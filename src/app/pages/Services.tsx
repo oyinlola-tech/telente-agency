@@ -51,10 +51,10 @@ export default function Services() {
             Our Services
           </span>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-['Roboto_Flex:SemiBold',sans-serif] font-semibold text-[var(--text-primary)] uppercase mb-6" style={{ fontVariationSettings: "'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 514, 'YTUC' 712, 'wdth' 100" }}>
-            Comprehensive Digital Solutions
+            Software Engineering Services
           </h1>
           <p className="text-lg md:text-xl text-[var(--text-secondary)] max-w-3xl mx-auto font-['Roboto_Flex:Regular',sans-serif]" style={{ fontVariationSettings: "'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 514, 'YTUC' 712, 'wdth' 100" }}>
-            We provide end-to-end technology solutions to help businesses thrive in the digital age. From concept to deployment, we're with you every step of the way.
+            We provide end-to-end software engineering to help businesses ship reliable products. From discovery to production operations, we are with you at every step.
           </p>
         </div>
 

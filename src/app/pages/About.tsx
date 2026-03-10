@@ -41,7 +41,7 @@ export default function About() {
             {companyInfo.name}
           </h1>
           <p className="text-lg md:text-xl text-[var(--text-secondary)] max-w-3xl mx-auto font-['Roboto_Flex:Regular',sans-serif]" style={{ fontVariationSettings: "'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 514, 'YTUC' 712, 'wdth' 100" }}>
-            {companyInfo.description}
+            Telente Technologies was founded with a simple belief: Technology should make everyday operations easier, smarter, and more transparent. In many parts of Africa, businesses still struggle with inefficient systems, poor tracking, and limited access to reliable digital tools. These gaps slow down growth and make it difficult for companies to operate with confidence.
           </p>
         </div>
 
@@ -52,10 +52,19 @@ export default function About() {
               Our Story
             </h2>
             <p className="text-lg text-[var(--text-secondary)] font-['Roboto_Flex:Regular',sans-serif] leading-relaxed" style={{ fontVariationSettings: "'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 514, 'YTUC' 712, 'wdth' 100" }}>
-              Founded in {companyInfo.founded} in Okitipupa, Ondo State, Nigeria, Telente Technologies was born from a vision to bridge the digital divide and empower local businesses with world-class technology solutions.
+              Telente Technologies was created to change that. The company focuses on building practical technology solutions that help businesses manage their operations more efficiently. Rather than creating complicated systems that are difficult to adopt, Telente designs simple, reliable, and scalable digital tools that solve real problems.
             </p>
             <p className="text-lg text-[var(--text-secondary)] font-['Roboto_Flex:Regular',sans-serif] leading-relaxed" style={{ fontVariationSettings: "'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 514, 'YTUC' 712, 'wdth' 100" }}>
-              What started as a small team of passionate developers has grown into a leading technology agency serving clients across Nigeria and beyond. We specialize in creating innovative digital solutions that drive business growth and transformation.
+              One of the key areas Telente is focused on is logistics and operational tracking. Many logistics businesses and delivery services face challenges such as lack of real time visibility, poor communication between dispatch and customers, and limited tracking systems. These issues often lead to delays, confusion, and loss of trust.
+            </p>
+            <p className="text-lg text-[var(--text-secondary)] font-['Roboto_Flex:Regular',sans-serif] leading-relaxed" style={{ fontVariationSettings: "'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 514, 'YTUC' 712, 'wdth' 100" }}>
+              To address this problem, Telente developed Telente Logistic, a modern logistics tracking platform designed to give businesses better control and transparency over their delivery operations. The platform allows companies to track movement, manage updates from a central admin system, and keep customers informed through automated notifications and map based tracking.
+            </p>
+            <p className="text-lg text-[var(--text-secondary)] font-['Roboto_Flex:Regular',sans-serif] leading-relaxed" style={{ fontVariationSettings: "'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 514, 'YTUC' 712, 'wdth' 100" }}>
+              Beyond logistics, Telente Technologies aims to build a broader ecosystem of digital solutions that support growing businesses, startups, and organizations that need reliable technology infrastructure to scale. At its core, Telente believes that innovation should not be limited to large global corporations. Businesses in emerging markets deserve the same level of efficiency, clarity, and technological support.
+            </p>
+            <p className="text-lg text-[var(--text-secondary)] font-['Roboto_Flex:Regular',sans-serif] leading-relaxed" style={{ fontVariationSettings: "'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 514, 'YTUC' 712, 'wdth' 100" }}>
+              By combining thoughtful design with practical functionality, Telente Technologies is committed to creating solutions that empower businesses to move faster, operate smarter, and serve their customers better.
             </p>
           </div>
           
@@ -78,7 +87,7 @@ export default function About() {
               Our Mission
             </h3>
             <p className="text-[var(--text-secondary)] font-['Roboto_Flex:Regular',sans-serif] leading-relaxed" style={{ fontVariationSettings: "'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 514, 'YTUC' 712, 'wdth' 100" }}>
-              To empower businesses in Nigeria and across Africa with cutting-edge technology solutions that drive growth, efficiency, and innovation. We are committed to delivering excellence in every project we undertake.
+              To build practical and reliable technology solutions that simplify operations, improve transparency, and empower businesses to grow with confidence.
             </p>
           </div>
           
@@ -90,7 +99,7 @@ export default function About() {
               Our Vision
             </h3>
             <p className="text-[var(--text-secondary)] font-['Roboto_Flex:Regular',sans-serif] leading-relaxed" style={{ fontVariationSettings: "'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 514, 'YTUC' 712, 'wdth' 100" }}>
-              To become Africa's leading technology agency, recognized for innovation, quality, and transformative digital solutions that positively impact businesses and communities across the continent.
+              To become a trusted technology partner for businesses across Africa, delivering innovative digital tools that transform how companies manage logistics, operations, and digital infrastructure.
             </p>
           </div>
         </div>

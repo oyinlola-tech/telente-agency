@@ -5,10 +5,15 @@ Enterprise-grade website and admin platform for Telente Technologies. This repos
 Maintainer: Oluwayemi Oyinlola Michael  
 Portfolio: oyinlola.site
 
-## SEO Summary
-Telente Technologies is a software development agency in Okitipupa, Nigeria, specializing in web development, mobile app development, UI/UX design, and cloud solutions. This project delivers an SEO-ready website and a secure admin portal to manage services, projects, blogs, team profiles, careers, testimonials, and contact submissions.
+## Production URLs
+- Frontend: https://www.telente.site
+- API: https://www.api.telente.site/api
+- Uploads: https://www.api.telente.site/uploads
 
-Keywords: Telente Technologies, software development agency, web development, mobile app development, UI/UX design, cloud solutions, Nigeria, Okitipupa, digital agency
+## SEO Summary
+Telente Technologies is a software engineering agency in Okitipupa, Nigeria, specializing in product engineering, platform engineering, web and mobile delivery, cloud infrastructure, and quality automation. This project delivers an SEO-ready website and a secure admin portal to manage services, projects, blogs, team profiles, careers, testimonials, and contact submissions.
+
+Keywords: Telente Technologies, software engineering agency, product engineering, platform engineering, web engineering, mobile engineering, cloud, DevOps, QA, Nigeria, Okitipupa
 
 ## Project Goals
 - Provide a high-performance marketing website for Telente Technologies.
@@ -17,25 +22,27 @@ Keywords: Telente Technologies, software development agency, web development, mo
 - Keep the system easy to run locally and deploy to production.
 
 ## Architecture Overview
-**Frontend**
+Frontend
 - Vite + React + TypeScript + Tailwind CSS
 - Public pages: Home, Services, Projects, About, Blogs, Careers, Contact
 - Admin pages: Login (email + OTP), OTP verification, Admin dashboard
 - All dynamic lists are fetched from the backend API
 
-**Backend**
+Backend
 - Node.js + Express
 - MySQL persistence with structured tables for content entities
 - Auth with email + OTP
 - CORS and rate-limiting enabled
+- Image upload endpoint with stored media served from `/uploads`
 
 ## Key Features
-- **Admin Content Management** for services, projects, blogs, team, testimonials, and careers
-- **OTP-based Admin Login** with email delivery
-- **Settings API** for site-level configuration
-- **Contact Submissions** storage and retrieval
-- **SEO-ready HTML head** with configurable meta tags via `.env`
-- **Environment-First Configuration** with explicit required variables
+- Admin content management for services, projects, blogs, team, testimonials, and careers
+- OTP-based admin login with email delivery
+- Settings API for site-level configuration
+- Contact submissions storage and retrieval
+- SEO-ready HTML head with configurable meta tags via `.env`
+- Image uploads for admin-managed entities
+- Environment-first configuration with explicit required variables
 
 ## Repository Structure
 ```
@@ -82,12 +89,11 @@ Backend:
 ```
 cd backend
 npm install
-npm run seed
 npm run dev
 ```
 
 ## API Summary
-Base URL: `http://localhost:3000/api`
+Base URL: https://www.api.telente.site/api
 
 Auth:
 - `POST /auth/login`
@@ -104,16 +110,25 @@ Content:
 - `/careers`
 - `/contact`
 - `/settings`
+- `/uploads/images`
 
 ## Data Model (High-Level)
-- **services**: title, description, icon, features
-- **projects**: title, client, category, description, technologies, image, testimonial, results
-- **blogs**: title, excerpt, content, author, author_role, date, category, read_time, image, tags
-- **team**: name, role, bio, image, linkedin, twitter
-- **testimonials**: name, role, company, content, rating, image
-- **careers**: title, department, location, type, description, requirements, responsibilities
-- **contact_submissions**: name, email, phone, subject, message
-- **settings**: JSON blob
+- services: title, description, icon, features
+- projects: title, client, category, description, technologies, image, testimonial, results
+- blogs: title, excerpt, content, author, author_role, date, category, read_time, image, tags
+- team: name, role, bio, image, linkedin, twitter
+- testimonials: name, role, company, content, rating, image
+- careers: title, department, location, type, description, requirements, responsibilities
+- contact_submissions: name, email, phone, subject, message
+- settings: JSON blob
+
+## Production Checklist
+- Set strong secrets for `JWT_SECRET` and admin credentials
+- Configure SMTP credentials for OTP delivery
+- Configure production database credentials
+- Ensure `VITE_SITE_URL` and `VITE_OG_IMAGE_URL` match live assets
+- Enable TLS and set `CORS_ORIGINS` to `https://www.telente.site`
+- Verify uploads are stored on durable storage if running multiple instances
 
 ## Security
 See `SECURITY.md` for vulnerability reporting and response guidelines.

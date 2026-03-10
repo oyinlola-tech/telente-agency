@@ -542,7 +542,7 @@ function TextContainer4() {
       <div className="flex flex-row items-center size-full">
         <div className="content-stretch flex items-center p-[30px] relative w-full">
           <div className="flex-[1_0_0] font-['Roboto_Flex:Regular',sans-serif] font-normal leading-[1.5] min-h-px min-w-px not-italic relative text-[#b3b3b2] text-[18px]" style={{ fontVariationSettings: "'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 514, 'YTUC' 712, 'wdth' 100" }}>
-            <p className="mb-0">In 2023, our digital agency gained global acclaim for innovative solutions, setting new standards in the ever-evolving digital landscape.</p>
+            <p className="mb-0">In 2023, our software engineering agency gained global acclaim for innovative solutions, setting new standards in the ever-evolving software landscape.</p>
             <p>&nbsp;</p>
           </div>
         </div>
@@ -1247,7 +1247,7 @@ function LinksContainer1() {
         Web Design
       </p>
       <p className="relative shrink-0 w-full" style={{ fontVariationSettings: "'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 514, 'YTUC' 712, 'wdth' 100" }}>
-        Digital Marketing
+        Quality Engineering
       </p>
     </div>
   );
@@ -1550,7 +1550,7 @@ function Container24() {
           NexGen turned our business around!
         </p>
         <p className="font-['Roboto_Flex:Regular',sans-serif] font-normal relative shrink-0 text-[#b3b3b2] text-[18px] w-full" style={{ fontVariationSettings: "'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 514, 'YTUC' 712, 'wdth' 100" }}>
-          Their digital marketing strategies helped us reach new customers and increase our revenue by 30% within just a few months. Highly recommended!
+          Their Quality Engineering strategies helped us reach new customers and increase our revenue by 30% within just a few months. Highly recommended!
         </p>
       </div>
     </div>
@@ -1635,7 +1635,7 @@ function Container26() {
           NexGen turned our business around!
         </p>
         <p className="font-['Roboto_Flex:Regular',sans-serif] font-normal relative shrink-0 text-[#b3b3b2] text-[18px] w-full" style={{ fontVariationSettings: "'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 514, 'YTUC' 712, 'wdth' 100" }}>
-          Their digital marketing strategies helped us reach new customers and increase our revenue by 30% within just a few months. Highly recommended!
+          Their Quality Engineering strategies helped us reach new customers and increase our revenue by 30% within just a few months. Highly recommended!
         </p>
       </div>
     </div>
@@ -2477,7 +2477,7 @@ function TextContainer28() {
   return (
     <div className="content-stretch flex items-center relative shrink-0 w-full" data-name="Text Container">
       <p className="font-['Roboto_Flex:SemiBold',sans-serif] font-semibold leading-[1.5] not-italic relative shrink-0 text-[#f9efec] text-[78px] uppercase whitespace-nowrap" style={{ fontVariationSettings: "'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 514, 'YTUC' 712, 'wdth' 100" }}>
-        in the Digital Age
+        in the software economy
       </p>
     </div>
   );
@@ -2834,10 +2834,10 @@ function TextContainer39() {
   return (
     <div className="content-stretch flex flex-col gap-[12px] items-start leading-[1.5] not-italic relative shrink-0 w-full" data-name="Text Container">
       <p className="font-['Roboto_Flex:Medium',sans-serif] font-medium relative shrink-0 text-[#f9efec] text-[30px] uppercase w-full" style={{ fontVariationSettings: "'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 514, 'YTUC' 712, 'wdth' 100" }}>
-        Best Digital Marketing Campaign
+        Best Quality Engineering Campaign
       </p>
       <p className="font-['Roboto_Flex:Regular',sans-serif] font-normal relative shrink-0 text-[#b3b3b2] text-[18px] w-full" style={{ fontVariationSettings: "'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 514, 'YTUC' 712, 'wdth' 100" }}>
-        Awarded for an exceptional digital marketing campaign with outstanding results, showcasing our data-driven strategies and targeted marketing efforts that achieved remarkable business growth for our clients.
+        Awarded for an exceptional Quality Engineering campaign with outstanding results, showcasing our data-driven strategies and targeted marketing efforts that achieved remarkable business growth for our clients.
       </p>
     </div>
   );
@@ -2962,3 +2962,5 @@ export default function AboutPageDesktop() {
     </div>
   );
 }
+
+

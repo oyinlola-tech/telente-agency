@@ -6,7 +6,7 @@ import { useTheme } from '../contexts/ThemeContext';
 import {
   LayoutDashboard, Briefcase, FolderOpen, FileText, Users,
   MessageSquare, Settings as SettingsIcon, LogOut, Menu, X, Moon, Sun,
-  Edit2, Trash2, RefreshCw,
+  Edit2, Trash2, RefreshCw, Star,
 } from 'lucide-react';
 import { Logo } from '../components/Logo';
 import { appConfig } from '../config/appConfig';
@@ -15,14 +15,17 @@ import {
   projectsAPI,
   blogsAPI,
   teamAPI,
+  testimonialsAPI,
   contactAPI,
   settingsAPI,
+  uploadsAPI,
 } from '../services/api';
 import type {
   Service,
   Project,
   Blog,
   TeamMember,
+  Testimonial,
   ContactSubmission,
   Settings,
 } from '../types/api';
@@ -78,6 +81,63 @@ function InfoBanner({ message }: { message: string }) {
   return (
     <div className="bg-[var(--bg-secondary)] border border-[var(--card-border)] rounded-2xl p-4 text-sm text-[var(--text-secondary)]">
       {message}
+    </div>
+  );
+}
+
+function ImageField({
+  label,
+  value,
+  onChange,
+}: {
+  label: string;
+  value: string;
+  onChange: (url: string) => void;
+}) {
+  const [uploading, setUploading] = useState(false);
+  const [error, setError] = useState('');
+
+  const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    setUploading(true);
+    setError('');
+    try {
+      const result = await uploadsAPI.uploadImage(file);
+      onChange(result.url);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to upload image.');
+    } finally {
+      setUploading(false);
+      event.target.value = '';
+    }
+  };
+
+  return (
+    <div className="space-y-2">
+      <div className="text-xs uppercase text-[var(--text-secondary)] font-['Roboto_Mono:Medium',sans-serif]">
+        {label}
+      </div>
+      <input
+        type="file"
+        accept="image/*"
+        onChange={handleFileChange}
+        className="w-full bg-[var(--bg-secondary)] border border-[var(--card-border)] rounded-xl px-4 py-3 file:mr-4 file:border-0 file:bg-[var(--primary)] file:text-[#0f0f0f] file:rounded-lg file:px-4 file:py-2"
+      />
+      {uploading && <div className="text-xs text-[var(--text-secondary)]">Uploading image...</div>}
+      {error && <div className="text-xs text-red-500">{error}</div>}
+      <input
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+        placeholder="Image URL (auto-filled on upload)"
+        className="w-full bg-[var(--bg-secondary)] border border-[var(--card-border)] rounded-xl px-4 py-3"
+      />
+      {value && (
+        <div className="rounded-xl overflow-hidden border border-[var(--card-border)]">
+          <img src={value} alt={label} className="w-full h-40 object-cover" />
+        </div>
+      )}
     </div>
   );
 }
@@ -345,7 +405,7 @@ function ProjectsTab() {
   return (
     <div className="space-y-6">
       <SectionHeader
-        title="Manage Projects"
+        title="Manage Products"
         action={
           <button
             onClick={() => resetForm()}
@@ -362,7 +422,7 @@ function ProjectsTab() {
       <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-6">
         <div className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl overflow-hidden">
           <div className="px-6 py-4 border-b border-[var(--card-border)] flex items-center justify-between">
-            <div className="text-sm text-[var(--text-secondary)] font-['Roboto_Mono:Medium',sans-serif] uppercase">Projects List</div>
+            <div className="text-sm text-[var(--text-secondary)] font-['Roboto_Mono:Medium',sans-serif] uppercase">Products List</div>
             <button
               onClick={reload}
               className="text-xs uppercase font-['Roboto_Mono:Medium',sans-serif] text-[var(--primary)]"
@@ -371,8 +431,8 @@ function ProjectsTab() {
             </button>
           </div>
           <div className="divide-y divide-[var(--card-border)]">
-            {loading && <div className="p-6 text-sm text-[var(--text-secondary)]">Loading projects...</div>}
-            {!loading && data.length === 0 && <div className="p-6 text-sm text-[var(--text-secondary)]">No projects yet.</div>}
+            {loading && <div className="p-6 text-sm text-[var(--text-secondary)]">Loading products...</div>}
+            {!loading && data.length === 0 && <div className="p-6 text-sm text-[var(--text-secondary)]">No products yet.</div>}
             {data.map((project) => (
               <div key={project.id} className="p-6 flex items-start justify-between gap-4">
                 <div>
@@ -419,7 +479,7 @@ function ProjectsTab() {
 
         <div className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-6">
           <h3 className="text-lg font-['Roboto_Flex:Medium',sans-serif] text-[var(--text-primary)] uppercase mb-4">
-            {editingId ? 'Edit Project' : 'Add Project'}
+            {editingId ? 'Edit Product' : 'Add Product'}
           </h3>
           <div className="space-y-4">
             <input
@@ -454,11 +514,10 @@ function ProjectsTab() {
               rows={3}
               className="w-full bg-[var(--bg-secondary)] border border-[var(--card-border)] rounded-xl px-4 py-3"
             />
-            <input
+            <ImageField
+              label="Project Image"
               value={form.image}
-              onChange={(event) => setForm((prev) => ({ ...prev, image: event.target.value }))}
-              placeholder="Image URL"
-              className="w-full bg-[var(--bg-secondary)] border border-[var(--card-border)] rounded-xl px-4 py-3"
+              onChange={(url) => setForm((prev) => ({ ...prev, image: url }))}
             />
             <textarea
               value={form.testimonial}
@@ -670,11 +729,10 @@ function BlogsTab() {
               rows={4}
               className="w-full bg-[var(--bg-secondary)] border border-[var(--card-border)] rounded-xl px-4 py-3"
             />
-            <input
+            <ImageField
+              label="Blog Image"
               value={form.image}
-              onChange={(event) => setForm((prev) => ({ ...prev, image: event.target.value }))}
-              placeholder="Image URL"
-              className="w-full bg-[var(--bg-secondary)] border border-[var(--card-border)] rounded-xl px-4 py-3"
+              onChange={(url) => setForm((prev) => ({ ...prev, image: url }))}
             />
             <textarea
               value={form.tags}
@@ -828,11 +886,10 @@ function TeamTab() {
               rows={3}
               className="w-full bg-[var(--bg-secondary)] border border-[var(--card-border)] rounded-xl px-4 py-3"
             />
-            <input
+            <ImageField
+              label="Profile Image"
               value={form.image}
-              onChange={(event) => setForm((prev) => ({ ...prev, image: event.target.value }))}
-              placeholder="Image URL"
-              className="w-full bg-[var(--bg-secondary)] border border-[var(--card-border)] rounded-xl px-4 py-3"
+              onChange={(url) => setForm((prev) => ({ ...prev, image: url }))}
             />
             <input
               value={form.linkedin}
@@ -855,6 +912,81 @@ function TeamTab() {
             </button>
           </div>
         </div>
+      </div>
+    </div>
+  );
+}
+
+function TestimonialsTab() {
+  const { data, loading, error, reload } = useResourceList<Testimonial>(testimonialsAPI.getAllAdmin);
+
+  return (
+    <div className="space-y-6">
+      <SectionHeader
+        title="Testimonials"
+        action={(
+          <button
+            onClick={reload}
+            className="bg-[var(--bg-secondary)] border border-[var(--card-border)] text-[var(--text-primary)] px-5 py-3 rounded-xl font-['Roboto_Mono:Medium',sans-serif] uppercase inline-flex items-center gap-2"
+          >
+            <RefreshCw size={18} />
+            Refresh
+          </button>
+        )}
+      />
+
+      {error && <InfoBanner message={error} />}
+
+      <div className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl divide-y divide-[var(--card-border)]">
+        {loading && <div className="p-6 text-sm text-[var(--text-secondary)]">Loading testimonials...</div>}
+        {!loading && data.length === 0 && <div className="p-6 text-sm text-[var(--text-secondary)]">No testimonials yet.</div>}
+        {data.map((item) => (
+          <div key={item.id} className="p-6 flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+            <div>
+              <div className="flex items-center gap-3">
+                <div className="text-lg font-['Roboto_Flex:Medium',sans-serif] text-[var(--text-primary)]">
+                  {item.name}
+                </div>
+                <span className={`text-xs uppercase font-['Roboto_Mono:Medium',sans-serif] px-2 py-1 rounded-full ${
+                  item.approved ? 'bg-green-500/15 text-green-500' : 'bg-yellow-500/15 text-yellow-600'
+                }`}>
+                  {item.approved ? 'Approved' : 'Pending'}
+                </span>
+              </div>
+              {(item.role || item.company) && (
+                <div className="text-sm text-[var(--text-secondary)] mt-1">
+                  {item.role || item.company}
+                </div>
+              )}
+              <div className="text-sm text-[var(--text-secondary)] mt-2">
+                Rating: {item.rating ?? 5}/5
+              </div>
+              <p className="text-[var(--text-secondary)] mt-2">{item.content}</p>
+            </div>
+            <div className="flex items-center gap-2">
+              {!item.approved && (
+                <button
+                  onClick={async () => {
+                    await testimonialsAPI.approve(item.id);
+                    reload();
+                  }}
+                  className="px-4 py-2 bg-[var(--primary)] text-[#0f0f0f] rounded-lg text-sm font-['Roboto_Mono:Medium',sans-serif] uppercase"
+                >
+                  Approve
+                </button>
+              )}
+              <button
+                onClick={async () => {
+                  await testimonialsAPI.delete(item.id);
+                  reload();
+                }}
+                className="px-4 py-2 bg-red-500/10 text-red-500 rounded-lg text-sm font-['Roboto_Mono:Medium',sans-serif] uppercase"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -1007,15 +1139,16 @@ export default function AdminDashboard() {
   }
 
   if (!isAuthenticated) {
-    return <Navigate to="/admin-secret-login-2026" replace />;
+    return <Navigate to="/oyin/login" replace />;
   }
 
   const menuItems = useMemo(() => ([
     { id: 'overview', label: 'Overview', icon: LayoutDashboard },
     { id: 'services', label: 'Services', icon: Briefcase },
-    { id: 'projects', label: 'Projects', icon: FolderOpen },
+    { id: 'projects', label: 'Products', icon: FolderOpen },
     { id: 'blogs', label: 'Blogs', icon: FileText },
     { id: 'team', label: 'Team', icon: Users },
+    { id: 'testimonials', label: 'Testimonials', icon: Star },
     { id: 'contacts', label: 'Contacts', icon: MessageSquare },
     { id: 'settings', label: 'Settings', icon: SettingsIcon },
   ]), []);
@@ -1116,6 +1249,7 @@ export default function AdminDashboard() {
           {activeTab === 'projects' && <ProjectsTab />}
           {activeTab === 'blogs' && <BlogsTab />}
           {activeTab === 'team' && <TeamTab />}
+          {activeTab === 'testimonials' && <TestimonialsTab />}
           {activeTab === 'contacts' && <ContactsTab />}
           {activeTab === 'settings' && <SettingsTab />}
         </main>

@@ -49,6 +49,37 @@ async function apiCall<T>(endpoint: string, options?: RequestInit): Promise<T> {
   return response.json();
 }
 
+async function uploadFile(endpoint: string, file: File): Promise<{ url: string; filename: string; size: number; mimeType: string }> {
+  const token = localStorage.getItem('adminToken');
+  const formData = new FormData();
+  formData.append('file', file);
+
+  const headers: HeadersInit = {
+    ...(token && { 'Authorization': `Bearer ${token}` }),
+  };
+
+  const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+    method: 'POST',
+    body: formData,
+    headers,
+  });
+
+  if (!response.ok) {
+    let errorMessage = `API Error: ${response.statusText}`;
+    try {
+      const errorData = await response.json();
+      if (errorData && typeof errorData === 'object' && 'error' in errorData) {
+        errorMessage = String((errorData as { error?: string }).error || errorMessage);
+      }
+    } catch (err) {
+      // ignore JSON parse errors
+    }
+    throw new ApiError(errorMessage, response.status);
+  }
+
+  return response.json();
+}
+
 // Authentication APIs
 export const authAPI = {
   login: (credentials: { email?: string; username?: string; password: string }) =>
@@ -147,10 +178,18 @@ export const teamAPI = {
 // Testimonials APIs
 export const testimonialsAPI = {
   getAll: () => apiCall<Testimonial[]>('/testimonials'),
+  getAllAdmin: () => apiCall<Testimonial[]>('/testimonials/admin'),
   getById: (id: string) => apiCall<Testimonial>(`/testimonials/${id}`),
+  createPublic: (data: Partial<Testimonial>) => apiCall<Testimonial>('/testimonials/public', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  }),
   create: (data: Partial<Testimonial>) => apiCall<Testimonial>('/testimonials', {
     method: 'POST',
     body: JSON.stringify(data),
+  }),
+  approve: (id: string) => apiCall<Testimonial>(`/testimonials/${id}/approve`, {
+    method: 'PUT',
   }),
   update: (id: string, data: Partial<Testimonial>) => apiCall<Testimonial>(`/testimonials/${id}`, {
     method: 'PUT',
@@ -198,6 +237,10 @@ export const settingsAPI = {
     method: 'PUT',
     body: JSON.stringify(data),
   }),
+};
+
+export const uploadsAPI = {
+  uploadImage: (file: File) => uploadFile('/uploads/images', file),
 };
 import type {
   AuthLoginResponse,

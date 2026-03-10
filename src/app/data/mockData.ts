@@ -4,43 +4,43 @@
 export const servicesData = [
   {
     id: '1',
-    title: 'Web Development',
-    description: 'Building modern, responsive websites using cutting-edge technologies like React, Vue, and Angular. We create scalable web applications tailored to your business needs.',
+    title: 'Web Engineering',
+    description: 'Designing and building robust web applications with modern frameworks. We focus on performance, security, and scalable architecture.',
     icon: 'Code',
     features: ['Responsive Design', 'SEO Optimized', 'Fast Loading', 'Secure & Scalable']
   },
   {
     id: '2',
-    title: 'Mobile App Development',
-    description: 'Native and cross-platform mobile applications for iOS and Android. We leverage React Native and Flutter to deliver high-performance mobile solutions.',
+    title: 'Mobile Engineering',
+    description: 'Native and cross-platform mobile applications for iOS and Android. We ship reliable mobile products with strong performance and UX.',
     icon: 'Smartphone',
     features: ['Cross-platform', 'Native Performance', 'Offline Support', 'Push Notifications']
   },
   {
     id: '3',
-    title: 'UI/UX Design',
-    description: 'Creating intuitive and beautiful user interfaces that enhance user experience. Our design process focuses on usability, accessibility, and modern aesthetics.',
+    title: 'Product Design & UX',
+    description: 'Designing interfaces and flows that reduce friction and improve outcomes. Our process focuses on usability, accessibility, and clarity.',
     icon: 'Palette',
     features: ['User Research', 'Wireframing', 'Prototyping', 'Design Systems']
   },
   {
     id: '4',
-    title: 'Cloud Solutions',
-    description: 'Deploy and manage your applications on leading cloud platforms. We provide cloud infrastructure setup, migration, and optimization services.',
+    title: 'Cloud & DevOps',
+    description: 'Deploy and operate applications on leading cloud platforms. We provide infrastructure setup, migration, observability, and cost optimization.',
     icon: 'Cloud',
     features: ['AWS & Azure', 'Auto Scaling', 'Cost Optimization', '24/7 Monitoring']
   },
   {
     id: '5',
-    title: 'Digital Marketing',
-    description: 'Comprehensive digital marketing strategies to grow your online presence. From SEO to social media marketing, we help you reach your target audience.',
+    title: 'Quality Engineering',
+    description: 'Test strategy, automation, and reliability engineering to reduce defects and improve release confidence.',
     icon: 'TrendingUp',
     features: ['SEO/SEM', 'Social Media', 'Content Marketing', 'Analytics']
   },
   {
     id: '6',
-    title: 'IT Consulting',
-    description: 'Expert technology consulting to help you make informed decisions. We provide strategic guidance on technology stack, architecture, and best practices.',
+    title: 'Architecture & Advisory',
+    description: 'Expert software architecture guidance to help you make informed decisions on stack, security, and system design.',
     icon: 'Users',
     features: ['Tech Strategy', 'Architecture Design', 'Code Review', 'Team Training']
   },
@@ -180,7 +180,7 @@ export const testimonialsData = [
     name: 'Sarah Thompson',
     role: 'CEO of BlueBloom',
     company: 'BlueBloom',
-    content: 'Telente Technologies turned our business around! Their digital marketing strategies helped us reach new customers and increase our revenue by 30% within just a few months. Highly recommended!',
+    content: 'Telente Technologies rebuilt our platform with stable architecture and faster performance. We shipped in weeks and saw measurable adoption gains.',
     rating: 5,
     image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80'
   },
@@ -269,10 +269,10 @@ export const careersData = [
 
 export const companyInfo = {
   name: 'Telente Technologies',
-  tagline: 'Building Digital Solutions for Tomorrow',
-  description: 'Leading web and application engineering agency based in Okitipupa, Ondo State, Nigeria. We specialize in creating innovative digital solutions that help businesses thrive in the digital age.',
+  tagline: 'Engineering Software That Scales',
+  description: 'Software engineering agency based in Okitipupa, Ondo State, Nigeria. We build products, platforms, and cloud systems that help businesses ship faster and operate reliably.',
   location: 'Okitipupa, Ondo State, Nigeria',
-  email: 'info@telente.com',
+  email: 'info@telente.site',
   phone: '+234 XXX XXX XXXX',
   founded: '2020',
   employees: '25+',

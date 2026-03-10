@@ -1000,7 +1000,7 @@ function LinksContainer1() {
         Web Design
       </p>
       <p className="relative shrink-0 w-full" style={{ fontVariationSettings: "'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 514, 'YTUC' 712, 'wdth' 100" }}>
-        Digital Marketing
+        Quality Engineering
       </p>
     </div>
   );
@@ -1303,7 +1303,7 @@ function Container23() {
           NexGen turned our business around!
         </p>
         <p className="font-['Roboto_Flex:Regular',sans-serif] font-normal relative shrink-0 text-[#b3b3b2] text-[18px] w-full" style={{ fontVariationSettings: "'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 514, 'YTUC' 712, 'wdth' 100" }}>
-          Their digital marketing strategies helped us reach new customers and increase our revenue by 30% within just a few months. Highly recommended!
+          Their Quality Engineering strategies helped us reach new customers and increase our revenue by 30% within just a few months. Highly recommended!
         </p>
       </div>
     </div>
@@ -1388,7 +1388,7 @@ function Container25() {
           NexGen turned our business around!
         </p>
         <p className="font-['Roboto_Flex:Regular',sans-serif] font-normal relative shrink-0 text-[#b3b3b2] text-[18px] w-full" style={{ fontVariationSettings: "'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 514, 'YTUC' 712, 'wdth' 100" }}>
-          Their digital marketing strategies helped us reach new customers and increase our revenue by 30% within just a few months. Highly recommended!
+          Their Quality Engineering strategies helped us reach new customers and increase our revenue by 30% within just a few months. Highly recommended!
         </p>
       </div>
     </div>
@@ -2060,7 +2060,7 @@ function SubContainer26() {
     <div className="content-stretch flex flex-[1_0_0] gap-[14px] items-center min-h-px min-w-px relative" data-name="Sub Container">
       <IconContainer6 />
       <p className="flex-[1_0_0] font-['Roboto_Flex:Medium',sans-serif] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#f9efec] text-[30px] uppercase" style={{ fontVariationSettings: "'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 514, 'YTUC' 712, 'wdth' 100" }}>
-        Digital Marketing Specialist
+        Quality Engineering Specialist
       </p>
     </div>
   );
@@ -2475,7 +2475,7 @@ function TextContainer17() {
         At NexGen
       </p>
       <p className="font-['Roboto_Flex:Regular',sans-serif] font-normal relative shrink-0 text-[#b3b3b2] text-[18px] w-full" style={{ fontVariationSettings: "'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 514, 'YTUC' 712, 'wdth' 100" }}>
-        We believe in fostering a dynamic and collaborative work environment that empowers our team members to excel in their respective fields. Join us to be part of a passionate and innovative team dedicated to crafting exceptional digital solutions for clients across the globe. We are committed to nurturing talent, encouraging professional growth, and creating a workplace where creativity thrives.
+        We believe in fostering a dynamic and collaborative work environment that empowers our team members to excel in their respective fields. Join us to be part of a passionate and innovative team dedicated to crafting exceptional software solutions for clients across the globe. We are committed to nurturing talent, encouraging professional growth, and creating a workplace where creativity thrives.
       </p>
     </div>
   );
@@ -3243,3 +3243,5 @@ export default function CareersPageDesktop() {
     </div>
   );
 }
+
+

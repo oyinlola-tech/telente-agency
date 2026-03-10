@@ -109,7 +109,7 @@ export default function AdminLogin() {
         </div>
 
         <div className="mt-6 text-center text-sm text-[var(--text-secondary)]">
-          <p>This page is accessible only at: <code className="bg-[var(--card-bg)] px-2 py-1 rounded">/admin-secret-login-2026</code></p>
+          <p>This page is accessible only at: <code className="bg-[var(--card-bg)] px-2 py-1 rounded">/oyin/login</code></p>
         </div>
       </div>
     </div>

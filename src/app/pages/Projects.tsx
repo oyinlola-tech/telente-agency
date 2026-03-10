@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router';
-import { ArrowRight, ExternalLink } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { projectsAPI } from '../services/api';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import type { Project } from '../types/api';
@@ -84,8 +84,9 @@ export default function Projects() {
             <div className="col-span-full text-center text-red-500">{error}</div>
           )}
           {!loading && !error && filteredProjects.map(project => (
-            <div
+            <Link
               key={project.id}
+              to={`/projects/${project.id}`}
               className="group bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl overflow-hidden hover:border-[var(--primary)] transition-all"
             >
               <div className="relative h-64 overflow-hidden">
@@ -131,8 +132,13 @@ export default function Projects() {
                     </div>
                   ))}
                 </div>
+
+                <div className="pt-6 text-[var(--primary)] font-['Roboto_Mono:Medium',sans-serif] uppercase text-sm inline-flex items-center gap-2">
+                  View Product
+                  <ArrowRight size={16} />
+                </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 

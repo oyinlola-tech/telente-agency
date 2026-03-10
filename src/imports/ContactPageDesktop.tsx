@@ -1001,7 +1001,7 @@ function LinksContainer1() {
         Web Design
       </p>
       <p className="relative shrink-0 w-full" style={{ fontVariationSettings: "'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 514, 'YTUC' 712, 'wdth' 100" }}>
-        Digital Marketing
+        Quality Engineering
       </p>
     </div>
   );
@@ -1304,7 +1304,7 @@ function Container23() {
           NexGen turned our business around!
         </p>
         <p className="font-['Roboto_Flex:Regular',sans-serif] font-normal relative shrink-0 text-[#b3b3b2] text-[18px] w-full" style={{ fontVariationSettings: "'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 514, 'YTUC' 712, 'wdth' 100" }}>
-          Their digital marketing strategies helped us reach new customers and increase our revenue by 30% within just a few months. Highly recommended!
+          Their Quality Engineering strategies helped us reach new customers and increase our revenue by 30% within just a few months. Highly recommended!
         </p>
       </div>
     </div>
@@ -1389,7 +1389,7 @@ function Container25() {
           NexGen turned our business around!
         </p>
         <p className="font-['Roboto_Flex:Regular',sans-serif] font-normal relative shrink-0 text-[#b3b3b2] text-[18px] w-full" style={{ fontVariationSettings: "'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 514, 'YTUC' 712, 'wdth' 100" }}>
-          Their digital marketing strategies helped us reach new customers and increase our revenue by 30% within just a few months. Highly recommended!
+          Their Quality Engineering strategies helped us reach new customers and increase our revenue by 30% within just a few months. Highly recommended!
         </p>
       </div>
     </div>
@@ -1731,7 +1731,7 @@ function TextContainer12() {
 function SubContainer18() {
   return (
     <div className="content-stretch flex gap-[20px] items-center relative shrink-0" data-name="Sub Container">
-      <p className="font-['Roboto_Mono:Regular',sans-serif] font-normal leading-[1.5] relative shrink-0 text-[#676665] text-[20px] uppercase whitespace-nowrap">Digital Marketing</p>
+      <p className="font-['Roboto_Mono:Regular',sans-serif] font-normal leading-[1.5] relative shrink-0 text-[#676665] text-[20px] uppercase whitespace-nowrap">Quality Engineering</p>
       <div className="relative shrink-0 size-[7px]" data-name="Shape">
         <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 7 7">
           <circle cx="3.5" cy="3.5" fill="var(--fill-0, #CE7D63)" id="Shape" r="3.5" />
@@ -1761,7 +1761,7 @@ function SubContainer18() {
           <circle cx="3.5" cy="3.5" fill="var(--fill-0, #CE7D63)" id="Shape" r="3.5" />
         </svg>
       </div>
-      <p className="font-['Roboto_Mono:Regular',sans-serif] font-normal leading-[1.5] relative shrink-0 text-[#676665] text-[20px] uppercase whitespace-nowrap">Digital Marketing</p>
+      <p className="font-['Roboto_Mono:Regular',sans-serif] font-normal leading-[1.5] relative shrink-0 text-[#676665] text-[20px] uppercase whitespace-nowrap">Quality Engineering</p>
     </div>
   );
 }
@@ -2388,3 +2388,5 @@ export default function ContactPageDesktop() {
     </div>
   );
 }
+
+

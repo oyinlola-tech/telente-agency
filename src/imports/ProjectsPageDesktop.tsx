@@ -1667,7 +1667,7 @@ function LinksContainer1() {
         Web Design
       </p>
       <p className="relative shrink-0 w-full" style={{ fontVariationSettings: "'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 514, 'YTUC' 712, 'wdth' 100" }}>
-        Digital Marketing
+        Quality Engineering
       </p>
     </div>
   );
@@ -2112,7 +2112,7 @@ function Container37() {
           NexGen turned our business around!
         </p>
         <p className="font-['Roboto_Flex:Regular',sans-serif] font-normal relative shrink-0 text-[#b3b3b2] text-[18px] w-full" style={{ fontVariationSettings: "'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 514, 'YTUC' 712, 'wdth' 100" }}>
-          Their digital marketing strategies helped us reach new customers and increase our revenue by 30% within just a few months. Highly recommended!
+          Their Quality Engineering strategies helped us reach new customers and increase our revenue by 30% within just a few months. Highly recommended!
         </p>
       </div>
     </div>
@@ -2197,7 +2197,7 @@ function Container39() {
           NexGen turned our business around!
         </p>
         <p className="font-['Roboto_Flex:Regular',sans-serif] font-normal relative shrink-0 text-[#b3b3b2] text-[18px] w-full" style={{ fontVariationSettings: "'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 514, 'YTUC' 712, 'wdth' 100" }}>
-          Their digital marketing strategies helped us reach new customers and increase our revenue by 30% within just a few months. Highly recommended!
+          Their Quality Engineering strategies helped us reach new customers and increase our revenue by 30% within just a few months. Highly recommended!
         </p>
       </div>
     </div>
@@ -2693,3 +2693,5 @@ export default function ProjectsPageDesktop() {
     </div>
   );
 }
+
+

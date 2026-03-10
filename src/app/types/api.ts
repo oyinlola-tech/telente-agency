@@ -73,6 +73,7 @@ export interface Testimonial {
   content: string;
   rating?: number;
   image?: string;
+  approved?: boolean;
 }
 
 export interface Career {

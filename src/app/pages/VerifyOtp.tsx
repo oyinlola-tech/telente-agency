@@ -130,7 +130,7 @@ export default function VerifyOtp() {
               <div className="flex items-center justify-between rounded-2xl border border-[var(--card-border)] px-4 py-3 text-sm text-[var(--text-secondary)]">
                 <span>Not your email?</span>
                 <Link
-                  to="/admin-secret-login-2026"
+                  to="/oyin/login"
                   className="font-['Roboto_Mono:Medium',sans-serif] uppercase text-[var(--primary)] hover:opacity-80"
                 >
                   Change Login
@@ -142,7 +142,7 @@ export default function VerifyOtp() {
           <div className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-3xl p-8 md:p-10 shadow-[0_18px_40px_rgba(0,0,0,0.06)]">
             <div className="flex items-center justify-between text-sm text-[var(--text-secondary)]">
               <Link
-                to="/admin-secret-login-2026"
+                to="/oyin/login"
                 className="inline-flex items-center gap-2 font-['Roboto_Mono:Medium',sans-serif] uppercase hover:text-[var(--primary)]"
               >
                 <ArrowLeft size={16} />

@@ -55,7 +55,7 @@ function Container2() {
   return (
     <div className="content-stretch flex flex-col font-['Roboto_Flex:SemiBold',sans-serif] font-semibold gap-[4px] items-start justify-center leading-[1.5] not-italic relative shrink-0 text-[#f9efec] text-[28px] uppercase w-full" data-name="Container">
       <p className="relative shrink-0 whitespace-nowrap" style={{ fontVariationSettings: "'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 514, 'YTUC' 712, 'wdth' 100" }}>
-        Digital Solutions
+        software solutions
       </p>
       <p className="min-w-full relative shrink-0 w-[min-content]" style={{ fontVariationSettings: "'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 514, 'YTUC' 712, 'wdth' 100" }}>
         That Drive Success
@@ -106,7 +106,7 @@ function SubContainer() {
 function Container3() {
   return (
     <div className="content-stretch flex gap-[8px] items-center relative shrink-0" data-name="Container">
-      <p className="font-['Roboto_Mono:Regular',sans-serif] font-normal leading-[1.5] relative shrink-0 text-[#676665] text-[14px] uppercase whitespace-nowrap">Digital Marketing</p>
+      <p className="font-['Roboto_Mono:Regular',sans-serif] font-normal leading-[1.5] relative shrink-0 text-[#676665] text-[14px] uppercase whitespace-nowrap">Quality Engineering</p>
       <div className="relative shrink-0 size-[7px]" data-name="Shape">
         <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 7 7">
           <circle cx="3.5" cy="3.5" fill="var(--fill-0, #CE7D63)" id="Shape" r="3.5" />
@@ -136,7 +136,7 @@ function Container3() {
           <circle cx="3.5" cy="3.5" fill="var(--fill-0, #CE7D63)" id="Shape" r="3.5" />
         </svg>
       </div>
-      <p className="font-['Roboto_Mono:Regular',sans-serif] font-normal leading-[1.5] relative shrink-0 text-[#676665] text-[14px] uppercase whitespace-nowrap">Digital Marketing</p>
+      <p className="font-['Roboto_Mono:Regular',sans-serif] font-normal leading-[1.5] relative shrink-0 text-[#676665] text-[14px] uppercase whitespace-nowrap">Quality Engineering</p>
     </div>
   );
 }
@@ -156,7 +156,7 @@ function Container1() {
         <div className="content-stretch flex flex-col gap-[20px] items-center justify-center pb-[96px] pt-[30px] px-[24px] relative w-full">
           <SubContainer />
           <p className="font-['Roboto_Flex:Regular',sans-serif] font-normal leading-[1.5] min-w-full not-italic relative shrink-0 text-[#676665] text-[14px] w-[min-content]" style={{ fontVariationSettings: "'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 514, 'YTUC' 712, 'wdth' 100" }}>
-            At NexGen, we believe in the transformative power of digital solutions. Our team of experts is dedicated to helping businesses like yours thrive in the fast-paced digital landscape.
+            At NexGen, we believe in the transformative power of software solutions. Our team of experts is dedicated to helping businesses like yours thrive in the fast-paced software landscape.
           </p>
           <SubContainer1 />
         </div>
@@ -835,7 +835,7 @@ function SubContainer6() {
     <div className="content-stretch flex gap-[14px] items-center relative shrink-0 w-full" data-name="Sub Container">
       <IconContainer4 />
       <p className="flex-[1_0_0] font-['Roboto_Flex:Medium',sans-serif] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[#f9efec] text-[20px] uppercase" style={{ fontVariationSettings: "'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 514, 'YTUC' 712, 'wdth' 100" }}>
-        Digital Marketing
+        Quality Engineering
       </p>
     </div>
   );
@@ -847,7 +847,7 @@ function TextContainer14() {
       <p className="font-['Roboto_Flex:Medium',sans-serif] font-medium relative shrink-0 text-[#f9efec] text-[18px] uppercase w-full" style={{ fontVariationSettings: "'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 514, 'YTUC' 712, 'wdth' 100" }}>
         Starts From $1,200
       </p>
-      <p className="font-['Roboto_Flex:Regular',sans-serif] font-normal relative shrink-0 text-[#b3b3b2] text-[14px] w-full" style={{ fontVariationSettings: "'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 514, 'YTUC' 712, 'wdth' 100" }}>{`In the digital age, marketing is a critical aspect of your business's success. Our Digital Marketing service employs data-driven strategies to enhance your brand's visibility`}</p>
+      <p className="font-['Roboto_Flex:Regular',sans-serif] font-normal relative shrink-0 text-[#b3b3b2] text-[14px] w-full" style={{ fontVariationSettings: "'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 514, 'YTUC' 712, 'wdth' 100" }}>{`In the software economy, reliability is critical for growth. Our Quality Engineering service combines automation and rigorous testing to improve release confidence.`}</p>
     </div>
   );
 }
@@ -1273,7 +1273,7 @@ function Container18() {
           NexGen turned our business around!
         </p>
         <p className="font-['Roboto_Flex:Regular',sans-serif] font-normal relative shrink-0 text-[#b3b3b2] text-[14px] w-full" style={{ fontVariationSettings: "'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 514, 'YTUC' 712, 'wdth' 100" }}>
-          Their digital marketing strategies helped us reach new customers and increase our revenue by 30% within just a few months. Highly recommended!
+          Their Quality Engineering strategies helped us reach new customers and increase our revenue by 30% within just a few months. Highly recommended!
         </p>
       </div>
     </div>
@@ -1358,7 +1358,7 @@ function Container20() {
           NexGen turned our business around!
         </p>
         <p className="font-['Roboto_Flex:Regular',sans-serif] font-normal relative shrink-0 text-[#b3b3b2] text-[14px] w-full" style={{ fontVariationSettings: "'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 514, 'YTUC' 712, 'wdth' 100" }}>
-          Their digital marketing strategies helped us reach new customers and increase our revenue by 30% within just a few months. Highly recommended!
+          Their Quality Engineering strategies helped us reach new customers and increase our revenue by 30% within just a few months. Highly recommended!
         </p>
       </div>
     </div>
@@ -2227,7 +2227,7 @@ function LinksContainer1() {
         Web Design
       </p>
       <p className="relative shrink-0 w-full" style={{ fontVariationSettings: "'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 514, 'YTUC' 712, 'wdth' 100" }}>
-        Digital Marketing
+        Quality Engineering
       </p>
     </div>
   );
@@ -2503,3 +2503,6 @@ export default function HomePageMobile() {
     </div>
   );
 }
+
+
+

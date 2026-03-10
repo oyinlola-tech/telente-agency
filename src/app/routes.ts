@@ -7,6 +7,7 @@ import About from './pages/About';
 import Blogs from './pages/Blogs';
 import Careers from './pages/Careers';
 import Contact from './pages/Contact';
+import ProjectDetail from './pages/ProjectDetail';
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
 import VerifyOtp from './pages/VerifyOtp';
@@ -20,6 +21,7 @@ export const router = createBrowserRouter([
       { index: true, Component: Home },
       { path: 'services', Component: Services },
       { path: 'projects', Component: Projects },
+      { path: 'projects/:id', Component: ProjectDetail },
       { path: 'about', Component: About },
       { path: 'blogs', Component: Blogs },
       { path: 'careers', Component: Careers },
@@ -28,7 +30,7 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: '/admin-secret-login-2026',
+    path: '/oyin/login',
     Component: AdminLogin,
   },
   {
