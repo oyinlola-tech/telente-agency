@@ -3,9 +3,10 @@ import { Link } from 'react-router';
 import { Calendar, Clock, ArrowRight, User } from 'lucide-react';
 import { blogsAPI } from '../services/api';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
+import type { Blog } from '../types/api';
 
 export default function Blogs() {
-  const [blogs, setBlogs] = useState<any[]>([]);
+  const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 

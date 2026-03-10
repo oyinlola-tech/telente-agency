@@ -30,12 +30,12 @@ async function apiCall<T>(endpoint: string, options?: RequestInit): Promise<T> {
 // Authentication APIs
 export const authAPI = {
   login: (credentials: { email?: string; username?: string; password: string }) =>
-    apiCall<{ otpRequired: boolean; otpId: string; message: string }>('/auth/login', {
+    apiCall<AuthLoginResponse>('/auth/login', {
       method: 'POST',
       body: JSON.stringify(credentials),
     }),
   verifyOtp: (payload: { otpId: string; code: string }) =>
-    apiCall<{ token: string; user: any }>('/auth/verify-otp', {
+    apiCall<AuthVerifyOtpResponse>('/auth/verify-otp', {
       method: 'POST',
       body: JSON.stringify(payload),
     }),
@@ -51,18 +51,18 @@ export const authAPI = {
   },
   
   verifyToken: () =>
-    apiCall<{ valid: boolean; user: any }>('/auth/verify'),
+    apiCall<AuthVerifyResponse>('/auth/verify'),
 };
 
 // Services APIs
 export const servicesAPI = {
-  getAll: () => apiCall<any[]>('/services'),
-  getById: (id: string) => apiCall<any>(`/services/${id}`),
-  create: (data: any) => apiCall<any>('/services', {
+  getAll: () => apiCall<Service[]>('/services'),
+  getById: (id: string) => apiCall<Service>(`/services/${id}`),
+  create: (data: Partial<Service>) => apiCall<Service>('/services', {
     method: 'POST',
     body: JSON.stringify(data),
   }),
-  update: (id: string, data: any) => apiCall<any>(`/services/${id}`, {
+  update: (id: string, data: Partial<Service>) => apiCall<Service>(`/services/${id}`, {
     method: 'PUT',
     body: JSON.stringify(data),
   }),
@@ -73,13 +73,13 @@ export const servicesAPI = {
 
 // Projects APIs
 export const projectsAPI = {
-  getAll: () => apiCall<any[]>('/projects'),
-  getById: (id: string) => apiCall<any>(`/projects/${id}`),
-  create: (data: any) => apiCall<any>('/projects', {
+  getAll: () => apiCall<Project[]>('/projects'),
+  getById: (id: string) => apiCall<Project>(`/projects/${id}`),
+  create: (data: Partial<Project>) => apiCall<Project>('/projects', {
     method: 'POST',
     body: JSON.stringify(data),
   }),
-  update: (id: string, data: any) => apiCall<any>(`/projects/${id}`, {
+  update: (id: string, data: Partial<Project>) => apiCall<Project>(`/projects/${id}`, {
     method: 'PUT',
     body: JSON.stringify(data),
   }),
@@ -90,13 +90,13 @@ export const projectsAPI = {
 
 // Blog APIs
 export const blogsAPI = {
-  getAll: () => apiCall<any[]>('/blogs'),
-  getById: (id: string) => apiCall<any>(`/blogs/${id}`),
-  create: (data: any) => apiCall<any>('/blogs', {
+  getAll: () => apiCall<Blog[]>('/blogs'),
+  getById: (id: string) => apiCall<Blog>(`/blogs/${id}`),
+  create: (data: Partial<Blog>) => apiCall<Blog>('/blogs', {
     method: 'POST',
     body: JSON.stringify(data),
   }),
-  update: (id: string, data: any) => apiCall<any>(`/blogs/${id}`, {
+  update: (id: string, data: Partial<Blog>) => apiCall<Blog>(`/blogs/${id}`, {
     method: 'PUT',
     body: JSON.stringify(data),
   }),
@@ -107,13 +107,13 @@ export const blogsAPI = {
 
 // Team Members APIs
 export const teamAPI = {
-  getAll: () => apiCall<any[]>('/team'),
-  getById: (id: string) => apiCall<any>(`/team/${id}`),
-  create: (data: any) => apiCall<any>('/team', {
+  getAll: () => apiCall<TeamMember[]>('/team'),
+  getById: (id: string) => apiCall<TeamMember>(`/team/${id}`),
+  create: (data: Partial<TeamMember>) => apiCall<TeamMember>('/team', {
     method: 'POST',
     body: JSON.stringify(data),
   }),
-  update: (id: string, data: any) => apiCall<any>(`/team/${id}`, {
+  update: (id: string, data: Partial<TeamMember>) => apiCall<TeamMember>(`/team/${id}`, {
     method: 'PUT',
     body: JSON.stringify(data),
   }),
@@ -124,13 +124,13 @@ export const teamAPI = {
 
 // Testimonials APIs
 export const testimonialsAPI = {
-  getAll: () => apiCall<any[]>('/testimonials'),
-  getById: (id: string) => apiCall<any>(`/testimonials/${id}`),
-  create: (data: any) => apiCall<any>('/testimonials', {
+  getAll: () => apiCall<Testimonial[]>('/testimonials'),
+  getById: (id: string) => apiCall<Testimonial>(`/testimonials/${id}`),
+  create: (data: Partial<Testimonial>) => apiCall<Testimonial>('/testimonials', {
     method: 'POST',
     body: JSON.stringify(data),
   }),
-  update: (id: string, data: any) => apiCall<any>(`/testimonials/${id}`, {
+  update: (id: string, data: Partial<Testimonial>) => apiCall<Testimonial>(`/testimonials/${id}`, {
     method: 'PUT',
     body: JSON.stringify(data),
   }),
@@ -141,13 +141,13 @@ export const testimonialsAPI = {
 
 // Careers APIs
 export const careersAPI = {
-  getAll: () => apiCall<any[]>('/careers'),
-  getById: (id: string) => apiCall<any>(`/careers/${id}`),
-  create: (data: any) => apiCall<any>('/careers', {
+  getAll: () => apiCall<Career[]>('/careers'),
+  getById: (id: string) => apiCall<Career>(`/careers/${id}`),
+  create: (data: Partial<Career>) => apiCall<Career>('/careers', {
     method: 'POST',
     body: JSON.stringify(data),
   }),
-  update: (id: string, data: any) => apiCall<any>(`/careers/${id}`, {
+  update: (id: string, data: Partial<Career>) => apiCall<Career>(`/careers/${id}`, {
     method: 'PUT',
     body: JSON.stringify(data),
   }),
@@ -158,12 +158,12 @@ export const careersAPI = {
 
 // Contact Form APIs
 export const contactAPI = {
-  submit: (data: any) => apiCall<any>('/contact', {
+  submit: (data: Partial<ContactSubmission>) => apiCall<ContactSubmission>('/contact', {
     method: 'POST',
     body: JSON.stringify(data),
   }),
-  getAll: () => apiCall<any[]>('/contact'),
-  getById: (id: string) => apiCall<any>(`/contact/${id}`),
+  getAll: () => apiCall<ContactSubmission[]>('/contact'),
+  getById: (id: string) => apiCall<ContactSubmission>(`/contact/${id}`),
   delete: (id: string) => apiCall<void>(`/contact/${id}`, {
     method: 'DELETE',
   }),
@@ -171,9 +171,22 @@ export const contactAPI = {
 
 // Site Settings APIs
 export const settingsAPI = {
-  get: () => apiCall<any>('/settings'),
-  update: (data: any) => apiCall<any>('/settings', {
+  get: () => apiCall<Settings>('/settings'),
+  update: (data: Settings) => apiCall<Settings>('/settings', {
     method: 'PUT',
     body: JSON.stringify(data),
   }),
 };
+import type {
+  AuthLoginResponse,
+  AuthVerifyOtpResponse,
+  AuthVerifyResponse,
+  Service,
+  Project,
+  Blog,
+  TeamMember,
+  Testimonial,
+  Career,
+  ContactSubmission,
+  Settings,
+} from '../types/api';

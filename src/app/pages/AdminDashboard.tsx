@@ -18,6 +18,14 @@ import {
   contactAPI,
   settingsAPI,
 } from '../services/api';
+import type {
+  Service,
+  Project,
+  Blog,
+  TeamMember,
+  ContactSubmission,
+  Settings,
+} from '../types/api';
 
 const emptyState = {
   error: '',
@@ -35,8 +43,8 @@ function formatList(value: string[] | undefined) {
   return Array.isArray(value) ? value.join('\n') : '';
 }
 
-function useResourceList(fetcher: () => Promise<any[]>) {
-  const [state, setState] = useState({ ...emptyState, data: [] as any[] });
+function useResourceList<T>(fetcher: () => Promise<T[]>) {
+  const [state, setState] = useState({ ...emptyState, data: [] as T[] });
 
   const load = async () => {
     setState((prev) => ({ ...prev, loading: true, error: '' }));
@@ -133,7 +141,7 @@ function OverviewTab() {
 }
 
 function ServicesTab() {
-  const { data, loading, error, reload } = useResourceList(servicesAPI.getAll);
+  const { data, loading, error, reload } = useResourceList<Service>(servicesAPI.getAll);
   const [form, setForm] = useState({ title: '', description: '', icon: '', features: '' });
   const [editingId, setEditingId] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
@@ -281,7 +289,7 @@ function ServicesTab() {
 }
 
 function ProjectsTab() {
-  const { data, loading, error, reload } = useResourceList(projectsAPI.getAll);
+  const { data, loading, error, reload } = useResourceList<Project>(projectsAPI.getAll);
   const [form, setForm] = useState({
     title: '',
     client: '',
@@ -481,7 +489,7 @@ function ProjectsTab() {
 }
 
 function BlogsTab() {
-  const { data, loading, error, reload } = useResourceList(blogsAPI.getAll);
+  const { data, loading, error, reload } = useResourceList<Blog>(blogsAPI.getAll);
   const [form, setForm] = useState({
     title: '',
     excerpt: '',
@@ -690,7 +698,7 @@ function BlogsTab() {
 }
 
 function TeamTab() {
-  const { data, loading, error, reload } = useResourceList(teamAPI.getAll);
+  const { data, loading, error, reload } = useResourceList<TeamMember>(teamAPI.getAll);
   const [form, setForm] = useState({
     name: '',
     role: '',
@@ -853,7 +861,7 @@ function TeamTab() {
 }
 
 function ContactsTab() {
-  const { data, loading, error, reload } = useResourceList(contactAPI.getAll);
+  const { data, loading, error, reload } = useResourceList<ContactSubmission>(contactAPI.getAll);
 
   return (
     <div className="space-y-6">
@@ -906,7 +914,7 @@ function ContactsTab() {
 }
 
 function SettingsTab() {
-  const [settings, setSettings] = useState<any>({});
+  const [settings, setSettings] = useState<Settings>({});
   const [rawValue, setRawValue] = useState('');
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -937,7 +945,7 @@ function SettingsTab() {
     setSaving(true);
     setError('');
     try {
-      const nextSettings = rawValue ? JSON.parse(rawValue) : {};
+      const nextSettings = rawValue ? (JSON.parse(rawValue) as Settings) : {};
       const saved = await settingsAPI.update(nextSettings);
       setSettings(saved);
       setRawValue(JSON.stringify(saved, null, 2));

@@ -1,5 +1,6 @@
 import { Link } from 'react-router';
 import { Logo } from './Logo';
+import { appConfig } from '../config/appConfig';
 import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
 
 export function Footer() {
@@ -83,7 +84,7 @@ export function Footer() {
 
         <div className="border-t border-[var(--nav-border)] mt-12 pt-8 text-center">
           <p className="text-[var(--text-secondary)] text-[14px]">
-            © 2026 Telente Technologies. All rights reserved. | Crafted with ❤️ in Okitipupa, Ondo State
+            © 2026 {appConfig.companyName}. All rights reserved. | Crafted in Okitipupa, Ondo State
           </p>
         </div>
       </div>

@@ -4,9 +4,10 @@ import { ArrowRight, Target, Eye, Award, Users } from 'lucide-react';
 import { companyInfo } from '../data/mockData';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import { teamAPI } from '../services/api';
+import type { TeamMember } from '../types/api';
 
 export default function About() {
-  const [team, setTeam] = useState<any[]>([]);
+  const [team, setTeam] = useState<TeamMember[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 

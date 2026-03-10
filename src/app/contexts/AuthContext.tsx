@@ -1,15 +1,9 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import { authAPI } from '../services/api';
-
-interface User {
-  id: string;
-  username: string;
-  email?: string;
-  role: string;
-}
+import type { AuthUser } from '../types/api';
 
 interface AuthContextType {
-  user: User | null;
+  user: AuthUser | null;
   isAuthenticated: boolean;
   isLoading: boolean;
   otpId: string | null;
@@ -23,7 +17,7 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<AuthUser | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [otpId, setOtpId] = useState<string | null>(() => sessionStorage.getItem('pendingOtpId'));
   const [pendingEmail, setPendingEmail] = useState<string | null>(() => sessionStorage.getItem('pendingOtpEmail'));

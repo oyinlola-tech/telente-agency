@@ -5,6 +5,7 @@ import { companyInfo } from '../data/mockData';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import svgPaths from "../../imports/svg-o2qg4vmwj9";
 import { servicesAPI, testimonialsAPI } from '../services/api';
+import type { Service, Testimonial } from '../types/api';
 
 const iconMap: Record<string, any> = {
   Code,
@@ -110,7 +111,7 @@ function HeroSection() {
   );
 }
 
-function ServicesSection({ services, loading, error }: { services: any[]; loading: boolean; error: string }) {
+function ServicesSection({ services, loading, error }: { services: Service[]; loading: boolean; error: string }) {
   return (
     <section className="py-20 px-4">
       <div className="max-w-[1400px] mx-auto">
@@ -247,7 +248,7 @@ function WhyChooseUsSection() {
   );
 }
 
-function TestimonialsSection({ testimonials, loading, error }: { testimonials: any[]; loading: boolean; error: string }) {
+function TestimonialsSection({ testimonials, loading, error }: { testimonials: Testimonial[]; loading: boolean; error: string }) {
   return (
     <section className="py-20 px-4">
       <div className="max-w-[1400px] mx-auto">
@@ -352,8 +353,8 @@ function CTASection() {
 }
 
 export default function Home() {
-  const [services, setServices] = useState<any[]>([]);
-  const [testimonials, setTestimonials] = useState<any[]>([]);
+  const [services, setServices] = useState<Service[]>([]);
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [servicesLoading, setServicesLoading] = useState(true);
   const [testimonialsLoading, setTestimonialsLoading] = useState(true);
   const [servicesError, setServicesError] = useState('');

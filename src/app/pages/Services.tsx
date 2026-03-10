@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import { Code, Smartphone, Palette, Cloud, TrendingUp, Users, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { servicesAPI } from '../services/api';
+import type { Service } from '../types/api';
 
 const iconMap: Record<string, any> = {
   Code,
@@ -13,7 +14,7 @@ const iconMap: Record<string, any> = {
 };
 
 export default function Services() {
-  const [services, setServices] = useState<any[]>([]);
+  const [services, setServices] = useState<Service[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 

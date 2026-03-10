@@ -1,15 +1,24 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router';
 import { ArrowRight, ExternalLink } from 'lucide-react';
 import { projectsAPI } from '../services/api';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
+import type { Project } from '../types/api';
 
 export default function Projects() {
   const [filter, setFilter] = useState('All');
-  const [projects, setProjects] = useState<any[]>([]);
+  const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const categories = ['All', 'Web Development', 'Mobile Development', 'Web & Mobile'];
+  const categories = useMemo(() => {
+    const unique = new Set<string>();
+    projects.forEach((project) => {
+      if (project.category) {
+        unique.add(project.category);
+      }
+    });
+    return ['All', ...Array.from(unique)];
+  }, [projects]);
 
   useEffect(() => {
     let active = true;

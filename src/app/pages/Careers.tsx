@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import { MapPin, Briefcase, Clock, ArrowRight } from 'lucide-react';
 import { careersAPI } from '../services/api';
+import type { Career } from '../types/api';
 
 export default function Careers() {
-  const [careers, setCareers] = useState<any[]>([]);
+  const [careers, setCareers] = useState<Career[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
