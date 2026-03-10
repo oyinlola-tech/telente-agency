@@ -106,10 +106,6 @@ export default function AdminLogin() {
             </button>
           </form>
 
-          <div className="mt-6 text-center text-sm text-[var(--text-secondary)]">
-            <p>Default Admin Credentials:</p>
-            <p className="mt-1 font-['Roboto_Mono:Medium',sans-serif]">Email: admin@telente.local | Password: admin123</p>
-          </div>
         </div>
 
         <div className="mt-6 text-center text-sm text-[var(--text-secondary)]">

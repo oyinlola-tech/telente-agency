@@ -1,9 +1,32 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import { Calendar, Clock, ArrowRight, User } from 'lucide-react';
-import { blogsData } from '../data/mockData';
+import { blogsAPI } from '../services/api';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 
 export default function Blogs() {
+  const [blogs, setBlogs] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    let active = true;
+    blogsAPI.getAll()
+      .then((data) => {
+        if (active) setBlogs(Array.isArray(data) ? data : []);
+      })
+      .catch(() => {
+        if (active) setError('Unable to load blogs right now.');
+      })
+      .finally(() => {
+        if (active) setLoading(false);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-[var(--bg-primary)] pt-32 lg:pt-24 pb-20 px-4">
       <div className="max-w-[1400px] mx-auto">
@@ -22,7 +45,13 @@ export default function Blogs() {
 
         {/* Blog Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {blogsData.map(blog => (
+          {loading && (
+            <div className="col-span-full text-center text-[var(--text-secondary)]">Loading blogs...</div>
+          )}
+          {error && !loading && (
+            <div className="col-span-full text-center text-red-500">{error}</div>
+          )}
+          {!loading && !error && blogs.map(blog => (
             <article key={blog.id} className="group bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl overflow-hidden hover:border-[var(--primary)] transition-all">
               <div className="relative h-64 overflow-hidden">
                 <ImageWithFallback

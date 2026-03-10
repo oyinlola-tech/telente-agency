@@ -1,4 +1,4 @@
-import svgPaths from "./svg-iu1yr12d1w";
+﻿import svgPaths from "./svg-iu1yr12d1w";
 import imgImage from "figma:asset/c6312101b508e020b1af49fbf6d06ab49490206b.png";
 import imgImage1 from "figma:asset/2011bcbaee24b0431327d9b378a71b4cc54cbe62.png";
 import imgImage2 from "figma:asset/78b051ea5bfd363ab0a6dddf635877fcdde3673d.png";
@@ -1773,7 +1773,7 @@ function SubContainer21() {
   return (
     <div className="bg-[#1a1a1a] relative rounded-[14px] shrink-0 w-full" data-name="Sub Container">
       <div className="content-stretch flex flex-col gap-[20px] items-start p-[24px] relative w-full">
-        <p className="font-['Roboto_Mono:Regular',sans-serif] font-normal leading-[1.5] relative shrink-0 text-[#b3b3b2] text-[14px] whitespace-nowrap">© 2024 NextGen. All rights reserved.</p>
+        <p className="font-['Roboto_Mono:Regular',sans-serif] font-normal leading-[1.5] relative shrink-0 text-[#b3b3b2] text-[14px] whitespace-nowrap">© 2024 Telente Technologies. All rights reserved.</p>
         <Container29 />
       </div>
     </div>

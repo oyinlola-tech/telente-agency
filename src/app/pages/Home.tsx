@@ -1,8 +1,10 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import { ArrowRight, Code, Smartphone, Palette, Cloud, TrendingUp, Users, CheckCircle2 } from 'lucide-react';
-import { servicesData, testimonialsData, companyInfo } from '../data/mockData';
+import { companyInfo } from '../data/mockData';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import svgPaths from "../../imports/svg-o2qg4vmwj9";
+import { servicesAPI, testimonialsAPI } from '../services/api';
 
 const iconMap: Record<string, any> = {
   Code,
@@ -108,7 +110,7 @@ function HeroSection() {
   );
 }
 
-function ServicesSection() {
+function ServicesSection({ services, loading, error }: { services: any[]; loading: boolean; error: string }) {
   return (
     <section className="py-20 px-4">
       <div className="max-w-[1400px] mx-auto">
@@ -127,8 +129,15 @@ function ServicesSection() {
         
         {/* Services Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {servicesData.map((service) => {
+          {loading && (
+            <div className="col-span-full text-center text-[var(--text-secondary)]">Loading services...</div>
+          )}
+          {error && !loading && (
+            <div className="col-span-full text-center text-red-500">{error}</div>
+          )}
+          {!loading && !error && services.map((service) => {
             const Icon = iconMap[service.icon] || Code;
+            const features = Array.isArray(service.features) ? service.features : [];
             return (
               <div
                 key={service.id}
@@ -147,7 +156,7 @@ function ServicesSection() {
                 </p>
                 
                 <ul className="space-y-2 mb-6">
-                  {service.features.map((feature, idx) => (
+                  {features.map((feature: string, idx: number) => (
                     <li key={idx} className="flex items-center gap-2 text-[var(--text-secondary)] text-sm">
                       <CheckCircle2 className="text-[var(--primary)]" size={16} />
                       {feature}
@@ -238,7 +247,7 @@ function WhyChooseUsSection() {
   );
 }
 
-function TestimonialsSection() {
+function TestimonialsSection({ testimonials, loading, error }: { testimonials: any[]; loading: boolean; error: string }) {
   return (
     <section className="py-20 px-4">
       <div className="max-w-[1400px] mx-auto">
@@ -260,7 +269,13 @@ function TestimonialsSection() {
         </div>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {testimonialsData.map((testimonial) => (
+          {loading && (
+            <div className="col-span-full text-center text-[var(--text-secondary)]">Loading testimonials...</div>
+          )}
+          {error && !loading && (
+            <div className="col-span-full text-center text-red-500">{error}</div>
+          )}
+          {!loading && !error && testimonials.map((testimonial) => (
             <div key={testimonial.id} className="bg-[var(--card-bg)] rounded-2xl overflow-hidden flex flex-col">
               <div className="p-8 flex-1">
                 <h3 className="text-xl font-['Roboto_Flex:Medium',sans-serif] font-medium text-[var(--text-primary)] uppercase mb-4" style={{ fontVariationSettings: "'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 514, 'YTUC' 712, 'wdth' 100" }}>
@@ -337,12 +352,52 @@ function CTASection() {
 }
 
 export default function Home() {
+  const [services, setServices] = useState<any[]>([]);
+  const [testimonials, setTestimonials] = useState<any[]>([]);
+  const [servicesLoading, setServicesLoading] = useState(true);
+  const [testimonialsLoading, setTestimonialsLoading] = useState(true);
+  const [servicesError, setServicesError] = useState('');
+  const [testimonialsError, setTestimonialsError] = useState('');
+
+  useEffect(() => {
+    let active = true;
+    servicesAPI.getAll()
+      .then((data) => {
+        if (active) {
+          setServices(Array.isArray(data) ? data : []);
+        }
+      })
+      .catch(() => {
+        if (active) setServicesError('Unable to load services right now.');
+      })
+      .finally(() => {
+        if (active) setServicesLoading(false);
+      });
+
+    testimonialsAPI.getAll()
+      .then((data) => {
+        if (active) {
+          setTestimonials(Array.isArray(data) ? data : []);
+        }
+      })
+      .catch(() => {
+        if (active) setTestimonialsError('Unable to load testimonials right now.');
+      })
+      .finally(() => {
+        if (active) setTestimonialsLoading(false);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-[var(--bg-primary)]">
       <HeroSection />
-      <ServicesSection />
+      <ServicesSection services={services} loading={servicesLoading} error={servicesError} />
       <WhyChooseUsSection />
-      <TestimonialsSection />
+      <TestimonialsSection testimonials={testimonials} loading={testimonialsLoading} error={testimonialsError} />
       <CTASection />
     </div>
   );

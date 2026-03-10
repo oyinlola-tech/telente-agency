@@ -1,16 +1,37 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import { ArrowRight, ExternalLink } from 'lucide-react';
-import { projectsData } from '../data/mockData';
+import { projectsAPI } from '../services/api';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 
 export default function Projects() {
   const [filter, setFilter] = useState('All');
+  const [projects, setProjects] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
   const categories = ['All', 'Web Development', 'Mobile Development', 'Web & Mobile'];
 
+  useEffect(() => {
+    let active = true;
+    projectsAPI.getAll()
+      .then((data) => {
+        if (active) setProjects(Array.isArray(data) ? data : []);
+      })
+      .catch(() => {
+        if (active) setError('Unable to load projects right now.');
+      })
+      .finally(() => {
+        if (active) setLoading(false);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
   const filteredProjects = filter === 'All'
-    ? projectsData
-    : projectsData.filter(p => p.category === filter);
+    ? projects
+    : projects.filter(p => p.category === filter);
 
   return (
     <div className="min-h-screen bg-[var(--bg-primary)] pt-32 lg:pt-24 pb-20 px-4">
@@ -47,7 +68,13 @@ export default function Projects() {
 
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 gap-8 mb-16">
-          {filteredProjects.map(project => (
+          {loading && (
+            <div className="col-span-full text-center text-[var(--text-secondary)]">Loading projects...</div>
+          )}
+          {error && !loading && (
+            <div className="col-span-full text-center text-red-500">{error}</div>
+          )}
+          {!loading && !error && filteredProjects.map(project => (
             <div
               key={project.id}
               className="group bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl overflow-hidden hover:border-[var(--primary)] transition-all"
@@ -76,7 +103,7 @@ export default function Projects() {
                 </p>
                 
                 <div className="flex flex-wrap gap-2 mb-6">
-                  {project.technologies.map(tech => (
+                  {(Array.isArray(project.technologies) ? project.technologies : []).map((tech: string) => (
                     <span
                       key={tech}
                       className="bg-[var(--bg-secondary)] px-3 py-1 rounded-lg text-sm text-[var(--text-secondary)] font-['Roboto_Mono:Medium',sans-serif]"
@@ -88,8 +115,8 @@ export default function Projects() {
                 
                 <div className="border-t border-[var(--card-border)] pt-6 space-y-2">
                   <div className="text-sm font-['Roboto_Mono:Medium',sans-serif] font-medium text-[var(--text-primary)] uppercase">Results:</div>
-                  {project.results.map((result, idx) => (
-                    <div key={idx} className="flex items-center gap-2 text-[var(--text-secondary)] text-sm">
+                  {(Array.isArray(project.results) ? project.results : []).map((result: string, idx: number) => (
+                    <div key={`${result}-${idx}`} className="flex items-center gap-2 text-[var(--text-secondary)] text-sm">
                       <div className="w-1.5 h-1.5 rounded-full bg-[var(--primary)]" />
                       {result}
                     </div>

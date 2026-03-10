@@ -16,7 +16,7 @@ function requireNumber(name) {
 
 const env = {
   PORT: requireNumber('PORT'),
-  NODE_ENV: process.env.NODE_ENV || 'development',
+  NODE_ENV: requireEnv('NODE_ENV'),
   CORS_ORIGINS: requireEnv('CORS_ORIGINS'),
   JWT_SECRET: requireEnv('JWT_SECRET'),
   JWT_EXPIRES_IN: requireEnv('JWT_EXPIRES_IN'),

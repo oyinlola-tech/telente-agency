@@ -1,4 +1,4 @@
-import svgPaths from "./svg-td1muq3thj";
+﻿import svgPaths from "./svg-td1muq3thj";
 import imgImage from "figma:asset/8410421760a1d164d08527cf8780ec84c55aa884.png";
 import imgImage1 from "figma:asset/9333dbfd96156981d7444169ea92aa972ca6be65.png";
 import imgImage2 from "figma:asset/c6312101b508e020b1af49fbf6d06ab49490206b.png";

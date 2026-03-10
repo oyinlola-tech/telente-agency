@@ -1,8 +1,31 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import { MapPin, Briefcase, Clock, ArrowRight } from 'lucide-react';
-import { careersData } from '../data/mockData';
+import { careersAPI } from '../services/api';
 
 export default function Careers() {
+  const [careers, setCareers] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    let active = true;
+    careersAPI.getAll()
+      .then((data) => {
+        if (active) setCareers(Array.isArray(data) ? data : []);
+      })
+      .catch(() => {
+        if (active) setError('Unable to load roles right now.');
+      })
+      .finally(() => {
+        if (active) setLoading(false);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-[var(--bg-primary)] pt-32 lg:pt-24 pb-20 px-4">
       <div className="max-w-[1400px] mx-auto">
@@ -21,7 +44,13 @@ export default function Careers() {
 
         {/* Open Positions */}
         <div className="space-y-6 mb-16">
-          {careersData.map(job => (
+          {loading && (
+            <div className="text-center text-[var(--text-secondary)]">Loading roles...</div>
+          )}
+          {error && !loading && (
+            <div className="text-center text-red-500">{error}</div>
+          )}
+          {!loading && !error && careers.map(job => (
             <div key={job.id} className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-8 hover:border-[var(--primary)] transition-all">
               <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
                 <div className="flex-1">
@@ -51,7 +80,7 @@ export default function Careers() {
                     <div>
                       <h4 className="text-sm font-['Roboto_Mono:Medium',sans-serif] font-medium text-[var(--text-primary)] uppercase mb-3">Requirements:</h4>
                       <ul className="space-y-2">
-                        {job.requirements.map((req, idx) => (
+                        {(Array.isArray(job.requirements) ? job.requirements : []).map((req: string, idx: number) => (
                           <li key={idx} className="flex items-start gap-2 text-[var(--text-secondary)] text-sm">
                             <div className="w-1.5 h-1.5 rounded-full bg-[var(--primary)] mt-2 shrink-0" />
                             <span>{req}</span>
@@ -63,7 +92,7 @@ export default function Careers() {
                     <div>
                       <h4 className="text-sm font-['Roboto_Mono:Medium',sans-serif] font-medium text-[var(--text-primary)] uppercase mb-3">Responsibilities:</h4>
                       <ul className="space-y-2">
-                        {job.responsibilities.map((resp, idx) => (
+                        {(Array.isArray(job.responsibilities) ? job.responsibilities : []).map((resp: string, idx: number) => (
                           <li key={idx} className="flex items-start gap-2 text-[var(--text-secondary)] text-sm">
                             <div className="w-1.5 h-1.5 rounded-full bg-[var(--primary)] mt-2 shrink-0" />
                             <span>{resp}</span>

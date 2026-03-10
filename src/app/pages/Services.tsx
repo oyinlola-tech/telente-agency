@@ -1,6 +1,7 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import { Code, Smartphone, Palette, Cloud, TrendingUp, Users, ArrowRight, CheckCircle2 } from 'lucide-react';
-import { servicesData } from '../data/mockData';
+import { servicesAPI } from '../services/api';
 
 const iconMap: Record<string, any> = {
   Code,
@@ -12,6 +13,34 @@ const iconMap: Record<string, any> = {
 };
 
 export default function Services() {
+  const [services, setServices] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    let active = true;
+    servicesAPI.getAll()
+      .then((data) => {
+        if (active) {
+          setServices(Array.isArray(data) ? data : []);
+        }
+      })
+      .catch(() => {
+        if (active) {
+          setError('Unable to load services right now.');
+        }
+      })
+      .finally(() => {
+        if (active) {
+          setLoading(false);
+        }
+      });
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-[var(--bg-primary)] pt-32 lg:pt-24 pb-20 px-4">
       <div className="max-w-[1400px] mx-auto">
@@ -30,8 +59,15 @@ export default function Services() {
 
         {/* Services Grid */}
         <div className="grid md:grid-cols-2 gap-8 mb-16">
-          {servicesData.map((service, idx) => {
+          {loading && (
+            <div className="col-span-full text-center text-[var(--text-secondary)]">Loading services...</div>
+          )}
+          {error && !loading && (
+            <div className="col-span-full text-center text-red-500">{error}</div>
+          )}
+          {!loading && !error && services.map((service) => {
             const Icon = iconMap[service.icon] || Code;
+            const features = Array.isArray(service.features) ? service.features : [];
             return (
               <div
                 key={service.id}
@@ -53,12 +89,12 @@ export default function Services() {
                     
                     <div className="space-y-3 mb-6">
                       <div className="text-sm font-['Roboto_Mono:Medium',sans-serif] font-medium text-[var(--text-primary)] uppercase mb-2">Key Features:</div>
-                      {service.features.map((feature, fidx) => (
-                        <div key={fidx} className="flex items-center gap-2 text-[var(--text-secondary)]">
-                          <CheckCircle2 className="text-[var(--primary)]" size={18} />
-                          <span className="font-['Roboto_Flex:Regular',sans-serif]" style={{ fontVariationSettings: "'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 514, 'YTUC' 712, 'wdth' 100" }}>{feature}</span>
-                        </div>
-                      ))}
+                    {features.map((feature: string, fidx: number) => (
+                      <div key={fidx} className="flex items-center gap-2 text-[var(--text-secondary)]">
+                        <CheckCircle2 className="text-[var(--primary)]" size={18} />
+                        <span className="font-['Roboto_Flex:Regular',sans-serif]" style={{ fontVariationSettings: "'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 514, 'YTUC' 712, 'wdth' 100" }}>{feature}</span>
+                      </div>
+                    ))}
                     </div>
                   </div>
                 </div>

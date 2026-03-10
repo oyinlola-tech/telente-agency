@@ -1,5 +1,6 @@
 import svgPaths from "../../imports/svg-o2qg4vmwj9";
 import { useTheme } from "../contexts/ThemeContext";
+import { appConfig } from "../config/appConfig";
 
 export function Logo() {
   const { theme } = useTheme();
@@ -17,7 +18,7 @@ export function Logo() {
           <path d={svgPaths.p2c86a580} fill={fillColor} id="Vector_6" />
         </g>
       </svg>
-      <span className="sr-only">Telente Technologies</span>
+      <span className="sr-only">{appConfig.companyName}</span>
     </div>
   );
 }
