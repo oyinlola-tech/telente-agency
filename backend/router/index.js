@@ -9,6 +9,7 @@ const testimonialsRoutes = require('./testimonials');
 const careersRoutes = require('./careers');
 const contactRoutes = require('./contact');
 const settingsRoutes = require('./settings');
+const uploadsRoutes = require('./uploads');
 
 const router = express.Router();
 
@@ -21,5 +22,6 @@ router.use('/testimonials', testimonialsRoutes);
 router.use('/careers', careersRoutes);
 router.use('/contact', contactRoutes);
 router.use('/settings', settingsRoutes);
+router.use('/uploads', uploadsRoutes);
 
 module.exports = router;

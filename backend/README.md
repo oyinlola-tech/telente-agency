@@ -1,36 +1,32 @@
 # Telente Backend (Node.js + MySQL)
 
-Backend API for Telente Technologies. Provides authentication, content management, and contact handling for the public website and admin panel.
+Backend API for Telente Technologies. Provides authentication, content management, contact handling, settings, and media uploads for the public website and admin panel.
+
+## Production URLs
+- API: https://www.api.telente.site/api
+- Uploads: https://www.api.telente.site/uploads
 
 ## Requirements
 - Node.js 18+
 - MySQL 8+
 
 ## Setup
-1. Create the database and tables:
-   - Open `backend/sql/schema.sql` in your MySQL client and run it.
-
-2. Configure environment variables:
+1. Configure environment variables:
    - Copy `backend/.env.example` to `backend/.env`.
    - Fill in all required values (no defaults are used).
 
-3. Install dependencies:
+2. Install dependencies:
 ```
 npm install
 ```
 
-4. Seed the admin user:
-```
-npm run seed
-```
-
-5. Start the API:
+3. Start the API (auto-creates database tables and seeds admin if missing):
 ```
 npm run dev
 ```
 
 ## API Base
-`http://localhost:3000/api`
+https://www.api.telente.site/api
 
 ## Auth Flow (Email + OTP)
 1. `POST /api/auth/login` with `{ "email": "...", "password": "..." }`
@@ -84,6 +80,9 @@ Settings:
 - `GET /api/settings`
 - `PUT /api/settings`
 
+Uploads:
+- `POST /api/uploads/images`
+
 ## Environment Variables
 All values are required and must be set in `backend/.env`:
 - `PORT`, `NODE_ENV`
@@ -96,7 +95,11 @@ All values are required and must be set in `backend/.env`:
 - `DEFAULT_ADMIN_EMAIL`, `DEFAULT_ADMIN_USER`, `DEFAULT_ADMIN_PASS`
 - `CORS_ORIGINS`
 
+## Storage Notes
+Uploads are stored on disk under `backend/uploads` and served at `/uploads`.
+In production, use durable storage or a shared volume if running multiple API instances.
+
 ## Notes
-- The admin user is created by `npm run seed`.
 - SMTP is required for OTP delivery.
 - All write routes require a valid JWT.
+- Rate limiting is enabled globally.

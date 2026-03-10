@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const db = require('../config/db');
 const { sendMail } = require('../services/mailer');
 const env = require('../config/env');
+const { renderOtpEmail } = require('../services/emailTemplates');
 
 function generateOtpCode() {
   return String(Math.floor(100000 + Math.random() * 900000));
@@ -60,6 +61,7 @@ async function login(req, res, next) {
       to: recipient,
       subject: 'Your Telente admin OTP code',
       text: `Your login code is ${otp.code}. It expires in ${env.OTP_TTL_MINUTES} minutes.`,
+      html: renderOtpEmail({ code: otp.code, ttlMinutes: env.OTP_TTL_MINUTES }),
     });
 
     return res.json({
@@ -158,6 +160,7 @@ async function resendOtp(req, res, next) {
       to: otp.email,
       subject: 'Your Telente admin OTP code',
       text: `Your login code is ${nextOtp.code}. It expires in ${env.OTP_TTL_MINUTES} minutes.`,
+      html: renderOtpEmail({ code: nextOtp.code, ttlMinutes: env.OTP_TTL_MINUTES }),
     });
 
     return res.json({

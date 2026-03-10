@@ -1,6 +1,7 @@
 const db = require('../config/db');
 const { sendMail } = require('../services/mailer');
 const env = require('../config/env');
+const { renderContactEmail } = require('../services/emailTemplates');
 
 function mapContact(row) {
   return {
@@ -47,6 +48,7 @@ async function submit(req, res, next) {
           to: smtpTo,
           subject: subject ? `New contact: ${subject}` : 'New contact submission',
           text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone || '-'}\n\nMessage:\n${message}`,
+          html: renderContactEmail({ name, email, phone, subject, message }),
         });
         emailSent = true;
       } catch (err) {

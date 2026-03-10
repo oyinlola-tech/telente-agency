@@ -1,5 +1,6 @@
 require('dotenv').config({ path: require('path').join(__dirname, '.env') });
 
+const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
@@ -8,9 +9,11 @@ const rateLimit = require('express-rate-limit');
 
 const apiRouter = require('./router');
 const env = require('./config/env');
+const db = require('./config/db');
 const { initDatabase } = require('./scripts/init-db');
 
 const app = express();
+app.disable('x-powered-by');
 
 const corsOrigins = env.CORS_ORIGINS
   .split(',')
@@ -40,6 +43,7 @@ app.get('/health', (req, res) => {
   res.json({ status: 'ok', time: new Date().toISOString() });
 });
 
+app.use('/uploads', express.static(path.join(__dirname, 'uploads'), { maxAge: '7d' }));
 app.use('/api', apiRouter);
 
 app.use((req, res) => {
@@ -53,15 +57,33 @@ app.use((err, req, res, next) => {
 });
 
 const port = env.PORT;
+let server;
 
 async function start() {
   await initDatabase();
-  app.listen(port, () => {
+  server = app.listen(port, () => {
     console.log(`API listening on http://localhost:${port}`);
   });
+  server.requestTimeout = 15_000;
+  server.headersTimeout = 20_000;
 }
 
 start().catch((err) => {
   console.error('Failed to start server:', err);
   process.exit(1);
 });
+
+async function shutdown(signal) {
+  try {
+    console.log(`Shutting down (${signal})...`);
+    if (server) {
+      await new Promise((resolve) => server.close(resolve));
+    }
+    await db.end();
+  } finally {
+    process.exit(0);
+  }
+}
+
+process.on('SIGTERM', () => shutdown('SIGTERM'));
+process.on('SIGINT', () => shutdown('SIGINT'));
