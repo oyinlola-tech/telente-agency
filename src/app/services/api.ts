@@ -6,6 +6,18 @@ if (!API_BASE_URL) {
 }
 
 // Helper function to make API calls
+class ApiError extends Error {
+  status: number;
+  data?: unknown;
+
+  constructor(message: string, status: number, data?: unknown) {
+    super(message);
+    this.name = 'ApiError';
+    this.status = status;
+    this.data = data;
+  }
+}
+
 async function apiCall<T>(endpoint: string, options?: RequestInit): Promise<T> {
   const token = localStorage.getItem('adminToken');
   
@@ -21,7 +33,17 @@ async function apiCall<T>(endpoint: string, options?: RequestInit): Promise<T> {
   });
 
   if (!response.ok) {
-    throw new Error(`API Error: ${response.statusText}`);
+    let errorMessage = `API Error: ${response.statusText}`;
+    let errorData: unknown;
+    try {
+      errorData = await response.json();
+      if (errorData && typeof errorData === 'object' && 'error' in errorData) {
+        errorMessage = String((errorData as { error?: string }).error || errorMessage);
+      }
+    } catch (err) {
+      // ignore JSON parse errors
+    }
+    throw new ApiError(errorMessage, response.status, errorData);
   }
 
   return response.json();

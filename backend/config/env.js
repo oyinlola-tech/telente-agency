@@ -26,7 +26,6 @@ const env = {
   SMTP_USER: requireEnv('SMTP_USER'),
   SMTP_PASS: requireEnv('SMTP_PASS'),
   SMTP_FROM: requireEnv('SMTP_FROM'),
-  SMTP_TO: requireEnv('SMTP_TO'),
   CONTACT_TO_EMAIL: requireEnv('CONTACT_TO_EMAIL'),
   DB_HOST: requireEnv('DB_HOST'),
   DB_PORT: requireNumber('DB_PORT'),

@@ -101,7 +101,7 @@ export default function Projects() {
               
               <div className="p-8">
                 <div className="text-sm text-[var(--text-secondary)] mb-2 font-['Roboto_Mono:Medium',sans-serif] uppercase">
-                  Client: {project.client}
+                  Client: {project.client || 'Not specified'}
                 </div>
                 <h3 className="text-2xl font-['Roboto_Flex:Medium',sans-serif] font-medium text-[var(--text-primary)] uppercase mb-4" style={{ fontVariationSettings: "'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 514, 'YTUC' 712, 'wdth' 100" }}>
                   {project.title}

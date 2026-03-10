@@ -46,7 +46,7 @@ export default function VerifyOtp() {
       await verifyOtp(code);
       navigate('/admin/dashboard');
     } catch (err) {
-      setError('Verification failed. Please try again.');
+      setError(err instanceof Error ? err.message : 'Verification failed. Please try again.');
     } finally {
       setIsVerifying(false);
     }
@@ -70,7 +70,7 @@ export default function VerifyOtp() {
       updateOtpId(response.otpId);
       setResendIn(RESEND_SECONDS);
     } catch (err) {
-      setError('Failed to resend OTP. Please try again.');
+      setError(err instanceof Error ? err.message : 'Failed to resend OTP. Please try again.');
     } finally {
       setIsResending(false);
     }

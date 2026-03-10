@@ -21,7 +21,7 @@ export default function AdminLogin() {
       await login(credentials.email, credentials.password);
       navigate('/verify-otp');
     } catch (err) {
-      setError('Invalid email or password');
+      setError(err instanceof Error ? err.message : 'Invalid email or password');
     } finally {
       setLoading(false);
     }
