@@ -72,7 +72,8 @@ const schemaStatements = [
     company VARCHAR(255) DEFAULT '',
     content TEXT NOT NULL,
     rating INT DEFAULT 5,
-    image VARCHAR(500) DEFAULT ''
+    image VARCHAR(500) DEFAULT '',
+    approved TINYINT(1) NOT NULL DEFAULT 0
   )`,
   `CREATE TABLE IF NOT EXISTS careers (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -118,9 +119,20 @@ async function ensureSchema() {
   }
 }
 
+async function ensureTestimonialsApprovedColumn() {
+  try {
+    await db.query('ALTER TABLE testimonials ADD COLUMN approved TINYINT(1) NOT NULL DEFAULT 0');
+  } catch (err) {
+    if (!err || err.code !== 'ER_DUP_FIELDNAME') {
+      throw err;
+    }
+  }
+}
+
 async function initDatabase() {
   await ensureDatabase();
   await ensureSchema();
+  await ensureTestimonialsApprovedColumn();
   await seedAdmin();
 }
 

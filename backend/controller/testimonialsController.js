@@ -9,10 +9,20 @@ function mapTestimonial(row) {
     content: row.content,
     rating: Number(row.rating),
     image: row.image,
+    approved: Boolean(row.approved),
   };
 }
 
 async function getAll(req, res, next) {
+  try {
+    const [rows] = await db.query('SELECT * FROM testimonials WHERE approved = 1 ORDER BY id DESC');
+    return res.json(rows.map(mapTestimonial));
+  } catch (err) {
+    return next(err);
+  }
+}
+
+async function getAllAdmin(req, res, next) {
   try {
     const [rows] = await db.query('SELECT * FROM testimonials ORDER BY id DESC');
     return res.json(rows.map(mapTestimonial));
@@ -43,8 +53,8 @@ async function create(req, res, next) {
     }
 
     const [result] = await db.query(
-      `INSERT INTO testimonials (name, role, company, content, rating, image)
-       VALUES (:name, :role, :company, :content, :rating, :image)`,
+      `INSERT INTO testimonials (name, role, company, content, rating, image, approved)
+       VALUES (:name, :role, :company, :content, :rating, :image, :approved)`,
       {
         name,
         role: role || '',
@@ -52,6 +62,39 @@ async function create(req, res, next) {
         content,
         rating: rating !== undefined ? Number(rating) : 5,
         image: image || '',
+        approved: 1,
+      }
+    );
+
+    const [rows] = await db.query('SELECT * FROM testimonials WHERE id = :id LIMIT 1', {
+      id: result.insertId,
+    });
+    return res.status(201).json(mapTestimonial(rows[0]));
+  } catch (err) {
+    return next(err);
+  }
+}
+
+async function createPublic(req, res, next) {
+  try {
+    const { name, role, company, content, rating } = req.body || {};
+    if (!name || !content) {
+      return res.status(400).json({ error: 'Name and content required' });
+    }
+
+    const normalizedRating = Math.min(5, Math.max(1, Number(rating) || 5));
+
+    const [result] = await db.query(
+      `INSERT INTO testimonials (name, role, company, content, rating, image, approved)
+       VALUES (:name, :role, :company, :content, :rating, :image, :approved)`,
+      {
+        name,
+        role: role || '',
+        company: company || '',
+        content,
+        rating: normalizedRating,
+        image: '',
+        approved: 0,
       }
     );
 
@@ -74,7 +117,7 @@ async function update(req, res, next) {
     }
 
     const existing = existingRows[0];
-    const { name, role, company, content, rating, image } = req.body || {};
+    const { name, role, company, content, rating, image, approved } = req.body || {};
 
     await db.query(
       `UPDATE testimonials SET
@@ -83,7 +126,8 @@ async function update(req, res, next) {
         company = :company,
         content = :content,
         rating = :rating,
-        image = :image
+        image = :image,
+        approved = :approved
        WHERE id = :id`,
       {
         id: req.params.id,
@@ -93,6 +137,7 @@ async function update(req, res, next) {
         content: content ?? existing.content,
         rating: rating !== undefined ? Number(rating) : existing.rating,
         image: image ?? existing.image,
+        approved: approved !== undefined ? Number(approved) : existing.approved,
       }
     );
 
@@ -119,10 +164,32 @@ async function remove(req, res, next) {
   }
 }
 
+async function approve(req, res, next) {
+  try {
+    const [existingRows] = await db.query('SELECT * FROM testimonials WHERE id = :id LIMIT 1', {
+      id: req.params.id,
+    });
+    if (!existingRows[0]) {
+      return res.status(404).json({ error: 'Testimonial not found' });
+    }
+
+    await db.query('UPDATE testimonials SET approved = 1 WHERE id = :id', { id: req.params.id });
+    const [rows] = await db.query('SELECT * FROM testimonials WHERE id = :id LIMIT 1', {
+      id: req.params.id,
+    });
+    return res.json(mapTestimonial(rows[0]));
+  } catch (err) {
+    return next(err);
+  }
+}
+
 module.exports = {
   getAll,
+  getAllAdmin,
   getById,
   create,
+  createPublic,
+  approve,
   update,
   remove,
 };
