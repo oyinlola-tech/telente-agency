@@ -69,7 +69,11 @@ export default function Blogs() {
                 <div className="flex items-center gap-4 text-sm text-[var(--text-secondary)] mb-4">
                   <div className="flex items-center gap-1">
                     <Calendar size={16} />
-                    <span>{new Date(blog.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                    <span>
+                      {blog.date
+                        ? new Date(blog.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+                        : '—'}
+                    </span>
                   </div>
                   <div className="flex items-center gap-1">
                     <Clock size={16} />

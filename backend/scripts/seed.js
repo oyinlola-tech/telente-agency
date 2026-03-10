@@ -33,11 +33,19 @@ async function seedAdmin() {
   console.log(`Admin user created: ${username}`);
 }
 
-seedAdmin()
-  .catch((err) => {
-    console.error(err);
-    process.exit(1);
-  })
-  .finally(() => {
-    db.end();
-  });
+async function runSeed() {
+  await seedAdmin();
+}
+
+if (require.main === module) {
+  runSeed()
+    .catch((err) => {
+      console.error(err);
+      process.exit(1);
+    })
+    .finally(() => {
+      db.end();
+    });
+}
+
+module.exports = { seedAdmin };

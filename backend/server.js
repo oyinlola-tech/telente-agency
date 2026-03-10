@@ -8,6 +8,7 @@ const rateLimit = require('express-rate-limit');
 
 const apiRouter = require('./router');
 const env = require('./config/env');
+const { initDatabase } = require('./scripts/init-db');
 
 const app = express();
 
@@ -52,6 +53,15 @@ app.use((err, req, res, next) => {
 });
 
 const port = env.PORT;
-app.listen(port, () => {
-  console.log(`API listening on http://localhost:${port}`);
+
+async function start() {
+  await initDatabase();
+  app.listen(port, () => {
+    console.log(`API listening on http://localhost:${port}`);
+  });
+}
+
+start().catch((err) => {
+  console.error('Failed to start server:', err);
+  process.exit(1);
 });

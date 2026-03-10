@@ -5,7 +5,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { useTheme } from '../contexts/ThemeContext';
 import {
   LayoutDashboard, Briefcase, FolderOpen, FileText, Users,
-  MessageSquare, Settings, LogOut, Menu, X, Moon, Sun,
+  MessageSquare, Settings as SettingsIcon, LogOut, Menu, X, Moon, Sun,
   Edit2, Trash2, RefreshCw,
 } from 'lucide-react';
 import { Logo } from '../components/Logo';
@@ -1017,7 +1017,7 @@ export default function AdminDashboard() {
     { id: 'blogs', label: 'Blogs', icon: FileText },
     { id: 'team', label: 'Team', icon: Users },
     { id: 'contacts', label: 'Contacts', icon: MessageSquare },
-    { id: 'settings', label: 'Settings', icon: Settings },
+    { id: 'settings', label: 'Settings', icon: SettingsIcon },
   ]), []);
 
   return (
