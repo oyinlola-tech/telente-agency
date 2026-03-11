@@ -170,7 +170,7 @@ export default function Contact() {
                     value={formData.phone}
                     onChange={handleChange}
                     className="w-full bg-[var(--bg-secondary)] border border-[var(--card-border)] rounded-xl px-4 py-3 text-[var(--text-primary)] focus:border-[var(--primary)] focus:outline-none transition-colors"
-                    placeholder="+234 XXX XXX XXXX"
+                    placeholder="+234 913 351 9489"
                   />
                 </div>
               </div>

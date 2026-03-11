@@ -273,7 +273,7 @@ export const companyInfo = {
   description: 'Software engineering agency based in Okitipupa, Ondo State, Nigeria. We build products, platforms, and cloud systems that help businesses ship faster and operate reliably.',
   location: 'Okitipupa, Ondo State, Nigeria',
   email: 'info@telente.site',
-  phone: '+234 XXX XXX XXXX',
+  phone: '+234 913 351 9489',
   founded: '2020',
   employees: '25+',
   projectsCompleted: '100+',
