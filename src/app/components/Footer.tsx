@@ -35,16 +35,16 @@ export function Footer() {
               Software engineering agency based in Okitipupa, Ondo State, Nigeria. Building reliable products, platforms, and cloud systems for growing businesses.
             </p>
             <div className="flex gap-3 pt-2">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="bg-[#0f0f0f] p-2 rounded-lg text-[var(--nav-active)] hover:opacity-80 transition-opacity">
+              <a href="https://facebook.com/share/1FtGkb9dtR/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" className="bg-[#0f0f0f] p-2 rounded-lg text-[var(--nav-active)] hover:opacity-80 transition-opacity">
                 <Facebook size={20} />
               </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="bg-[#0f0f0f] p-2 rounded-lg text-[var(--nav-active)] hover:opacity-80 transition-opacity">
+              <a href="https://twitter.com/oyinlola141" target="_blank" rel="noopener noreferrer" className="bg-[#0f0f0f] p-2 rounded-lg text-[var(--nav-active)] hover:opacity-80 transition-opacity">
                 <Twitter size={20} />
               </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="bg-[#0f0f0f] p-2 rounded-lg text-[var(--nav-active)] hover:opacity-80 transition-opacity">
+              <a href="https://instagram.com/oyinlola.eth" target="_blank" rel="noopener noreferrer" className="bg-[#0f0f0f] p-2 rounded-lg text-[var(--nav-active)] hover:opacity-80 transition-opacity">
                 <Instagram size={20} />
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="bg-[#0f0f0f] p-2 rounded-lg text-[var(--nav-active)] hover:opacity-80 transition-opacity">
+              <a href="https://linkedin.com/in/oluwayemioyinlola" target="_blank" rel="noopener noreferrer" className="bg-[#0f0f0f] p-2 rounded-lg text-[var(--nav-active)] hover:opacity-80 transition-opacity">
                 <Linkedin size={20} />
               </a>
             </div>
@@ -97,7 +97,7 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-2 text-[var(--text-secondary)]">
                 <Phone size={20} className="shrink-0 text-[var(--nav-active)]" />
-                <span>+234 XXX XXX XXXX</span>
+                <span>+234 913 351 9489</span>
               </li>
               <li className="flex items-center gap-2 text-[var(--text-secondary)]">
                 <Mail size={20} className="shrink-0 text-[var(--nav-active)]" />
