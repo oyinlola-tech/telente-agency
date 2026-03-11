@@ -1,8 +1,9 @@
 // API Service Layer for Telente Technologies
-const API_BASE_URL = import.meta.env.VITE_API_URL;
+const PRIMARY_API_URL = import.meta.env.VITE_API_URL_PRIMARY || import.meta.env.VITE_API_URL;
+const FALLBACK_API_URL = import.meta.env.VITE_API_URL_FALLBACK;
 
-if (!API_BASE_URL) {
-  throw new Error('VITE_API_URL is not set. Define it in your .env file.');
+if (!PRIMARY_API_URL) {
+  throw new Error('VITE_API_URL_PRIMARY (or VITE_API_URL) is not set. Define it in your .env file.');
 }
 
 // Helper function to make API calls
@@ -27,10 +28,7 @@ async function apiCall<T>(endpoint: string, options?: RequestInit): Promise<T> {
     ...options?.headers,
   };
 
-  const response = await fetch(`${API_BASE_URL}${endpoint}`, {
-    ...options,
-    headers,
-  });
+  const response = await fetchWithFallback(endpoint, { ...options, headers });
 
   if (!response.ok) {
     let errorMessage = `API Error: ${response.statusText}`;
@@ -58,7 +56,7 @@ async function uploadFile(endpoint: string, file: File): Promise<{ url: string; 
     ...(token && { 'Authorization': `Bearer ${token}` }),
   };
 
-  const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+  const response = await fetchWithFallback(endpoint, {
     method: 'POST',
     body: formData,
     headers,
@@ -78,6 +76,17 @@ async function uploadFile(endpoint: string, file: File): Promise<{ url: string; 
   }
 
   return response.json();
+}
+
+async function fetchWithFallback(endpoint: string, options?: RequestInit) {
+  try {
+    return await fetch(`${PRIMARY_API_URL}${endpoint}`, options);
+  } catch (err) {
+    if (FALLBACK_API_URL && err instanceof TypeError) {
+      return await fetch(`${FALLBACK_API_URL}${endpoint}`, options);
+    }
+    throw err;
+  }
 }
 
 // Authentication APIs

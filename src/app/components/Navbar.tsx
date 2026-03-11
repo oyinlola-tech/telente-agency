@@ -1,12 +1,10 @@
 import { Link, useLocation } from 'react-router';
 import { Logo } from './Logo';
-import { useTheme } from '../contexts/ThemeContext';
-import { Moon, Sun, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
 
 export function Navbar() {
   const location = useLocation();
-  const { theme, toggleTheme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
@@ -56,13 +54,6 @@ export function Navbar() {
               Contact Us
             </Link>
             
-            <button
-              onClick={toggleTheme}
-              className="bg-[#0f0f0f] p-[18px] rounded-[12px] text-[var(--nav-active)] hover:opacity-80 transition-opacity"
-              aria-label="Toggle theme"
-            >
-              {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-            </button>
           </div>
         </div>
       </div>
@@ -75,14 +66,6 @@ export function Navbar() {
           </Link>
           
           <div className="flex items-center gap-2">
-            <button
-              onClick={toggleTheme}
-              className="bg-[#0f0f0f] p-3 rounded-[12px] text-[var(--nav-active)]"
-              aria-label="Toggle theme"
-            >
-              {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-            </button>
-            
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="bg-[#0f0f0f] p-3 rounded-[12px] text-[var(--nav-active)]"

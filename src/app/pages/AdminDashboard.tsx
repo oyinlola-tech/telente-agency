@@ -2,10 +2,9 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Navigate, Link } from 'react-router';
 import { useAuth } from '../contexts/AuthContext';
-import { useTheme } from '../contexts/ThemeContext';
 import {
   LayoutDashboard, Briefcase, FolderOpen, FileText, Users,
-  MessageSquare, Settings as SettingsIcon, LogOut, Menu, X, Moon, Sun,
+  MessageSquare, Settings as SettingsIcon, LogOut, Menu, X,
   Edit2, Trash2, RefreshCw, Star,
 } from 'lucide-react';
 import { Logo } from '../components/Logo';
@@ -1126,7 +1125,6 @@ function SettingsTab() {
 
 export default function AdminDashboard() {
   const { isAuthenticated, isLoading, logout, user } = useAuth();
-  const { theme, toggleTheme } = useTheme();
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [activeTab, setActiveTab] = useState('overview');
 
@@ -1186,14 +1184,6 @@ export default function AdminDashboard() {
           </nav>
 
           <div className="p-4 border-t border-[var(--card-border)] space-y-2">
-            <button
-              onClick={toggleTheme}
-              className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-[var(--text-secondary)] hover:bg-[var(--bg-secondary)] transition-colors"
-            >
-              {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-              <span className="font-['Roboto_Flex:Medium',sans-serif]">Toggle Theme</span>
-            </button>
-
             <button
               onClick={logout}
               className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-red-500 hover:bg-red-500/10 transition-colors"
